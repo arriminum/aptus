@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus UI CSS Utilities</title>
+  <link rel="stylesheet" href="../../src/ui.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 18px 0;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dedede;
+      margin: 18px 0;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94rem;
+    }
+
+    .doc-example {
+      margin: 14px 0;
+      padding: 16px;
+      border: 1px solid #dddddd;
+      background: #ffffff;
+    }
+
+    .doc-button-row,
+    .doc-bg-row,
+    .doc-fade-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .doc-dark-preview {
+      padding: 16px;
+      background: #3b3b3b;
+    }
+
+    .doc-old-browser-preview {
+      position: relative;
+      min-height: 96px;
+      overflow: hidden;
+      border: 1px solid #dddddd;
+      background: #f7f7f7;
+    }
+
+    .doc-old-browser-preview #old-browser-warning {
+      position: absolute;
+      box-sizing: border-box;
+    }
+
+    .doc-muted-box {
+      padding: 14px;
+      background: #eeeeee;
+      color: #555555;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus UI CSS Utilities</h1>
+
+    <section aria-labelledby="responsive-images">
+      <h2 id="responsive-images">Responsive Images</h2>
+      <p>Use the image size utilities to keep images fluid while limiting their maximum width.</p>
+      <div class="doc-example">
+        <img
+          class="ui-img-md"
+          alt="Neutral placeholder"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect width='400' height='220' fill='%23eeeeee'/%3E%3Cpath d='M0 220 130 90l72 72 52-52 146 110z' fill='%23cccccc'/%3E%3Ccircle cx='302' cy='66' r='30' fill='%23d8d8d8'/%3E%3Ctext x='200' y='198' text-anchor='middle' font-family='Arial' font-size='18' fill='%23777777'%3E.ui-img-md%3C/text%3E%3C/svg%3E">
+      </div>
+      <pre><code>&lt;img class="ui-img-md" src="docs/assets/example.jpg" alt="Example image"&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="text">
+      <h2 id="text">Text</h2>
+      <p>Use text helpers for subdued notes and old prices or replaced content.</p>
+      <div class="doc-example">
+        <p class="notetext">This note uses the notetext utility.</p>
+        <p><span class="old-text">$49.00</span> $39.00</p>
+      </div>
+      <pre><code>&lt;p class="notetext"&gt;This note uses the notetext utility.&lt;/p&gt;
+&lt;span class="old-text"&gt;$49.00&lt;/span&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="check-list">
+      <h2 id="check-list">Check List</h2>
+      <p>Use the check list utility for short feature or confirmation lists.</p>
+      <div class="doc-example">
+        <ul class="ui-check-list">
+          <li>Simple setup</li>
+          <li>Responsive layout</li>
+          <li>Reusable styles</li>
+        </ul>
+      </div>
+      <pre><code>&lt;ul class="ui-check-list"&gt;
+  &lt;li&gt;Simple setup&lt;/li&gt;
+  &lt;li&gt;Responsive layout&lt;/li&gt;
+  &lt;li&gt;Reusable styles&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="sliding-button-variants">
+      <h2 id="sliding-button-variants">Sliding Button Variants</h2>
+      <p>Use sliding variants for hoverable buttons with animated background movement.</p>
+      <div class="doc-example doc-button-row">
+        <a class="ui-btn-slide" href="#">Default Slide</a>
+        <a class="ui-btn-slide ui-btn-slide-red" href="#">Red Slide</a>
+        <a class="ui-btn-slide ui-btn-slide-green" href="#">Green Slide</a>
+      </div>
+      <div class="doc-example doc-dark-preview">
+        <a class="white-sliding-cta" href="#">White Slide</a>
+      </div>
+      <pre><code>&lt;a class="ui-btn-slide" href="#"&gt;Default Slide&lt;/a&gt;
+&lt;a class="ui-btn-slide ui-btn-slide-red" href="#"&gt;Red Slide&lt;/a&gt;
+&lt;a class="ui-btn-slide ui-btn-slide-green" href="#"&gt;Green Slide&lt;/a&gt;
+&lt;a class="white-sliding-cta" href="#"&gt;White Slide&lt;/a&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="text-with-background">
+      <h2 id="text-with-background">Text With Background</h2>
+      <p>Use background text utilities to highlight short inline phrases.</p>
+      <div class="doc-example doc-bg-row">
+        <span class="ui-text-bg">Default highlight</span>
+        <span class="ui-text-bg-red">Red highlight</span>
+        <span class="ui-text-bg-green">Green highlight</span>
+      </div>
+      <pre><code>&lt;span class="ui-text-bg"&gt;Default highlight&lt;/span&gt;
+&lt;span class="ui-text-bg-red"&gt;Red highlight&lt;/span&gt;
+&lt;span class="ui-text-bg-green"&gt;Green highlight&lt;/span&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="old-browser-warning-section">
+      <h2 id="old-browser-warning-section">Old Browser Warning</h2>
+      <p>The real warning selector is fixed-position. This preview contains it so it does not block the documentation page.</p>
+      <div class="doc-example doc-old-browser-preview">
+        <div id="old-browser-warning">
+          <span class="bwarn-cont">Your browser is outdated. Please update it for the best experience.</span>
+        </div>
+      </div>
+      <pre><code>&lt;div id="old-browser-warning"&gt;
+  &lt;span class="bwarn-cont"&gt;Your browser is outdated. Please update it.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="spinner">
+      <h2 id="spinner">Spinner</h2>
+      <p>Use the spinner element beside brief loading text.</p>
+      <div class="doc-example">
+        <span class="el-spinner" aria-hidden="true"></span>
+        <span>Loading content...</span>
+      </div>
+      <pre><code>&lt;span class="el-spinner" aria-hidden="true"&gt;&lt;/span&gt;
+&lt;span&gt;Loading content...&lt;/span&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="fade-effects">
+      <h2 id="fade-effects">Fade Effects</h2>
+      <p>Use fade helpers for elements that should transition into or out of view.</p>
+      <div class="doc-example doc-fade-row">
+        <div class="doc-muted-box el-fade-up">Hidden faded item</div>
+        <div class="doc-muted-box el-fade-up visible">Visible faded item</div>
+        <div class="doc-muted-box el-fade-out">Fade out item</div>
+      </div>
+      <pre><code>&lt;div class="el-fade-up"&gt;Hidden faded item&lt;/div&gt;
+&lt;div class="el-fade-up visible"&gt;Visible faded item&lt;/div&gt;
+&lt;div class="el-fade-out"&gt;Fade out item&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="ui-states">
+      <h2 id="ui-states">UI States</h2>
+      <p>Use the loading state to make a control visually muted and non-interactive.</p>
+      <div class="doc-example">
+        <button class="ui-btn ui-btn-primary ui-is-loading" type="button">Saving...</button>
+      </div>
+      <pre><code>&lt;button class="ui-btn ui-btn-primary ui-is-loading" type="button"&gt;
+  Saving...
+&lt;/button&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="status">
+      <h2 id="status">Status Badges</h2>
+      <p>Use status badges for compact active and inactive labels.</p>
+      <div class="doc-example doc-button-row">
+        <span class="ui-status-active">Active</span>
+        <span class="ui-status-inactive">Inactive</span>
+      </div>
+      <pre><code>&lt;span class="ui-status-active"&gt;Active&lt;/span&gt;
+&lt;span class="ui-status-inactive"&gt;Inactive&lt;/span&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="lists">
+      <h2 id="lists">Lists</h2>
+      <p>Use list helpers for default square lists or lists without bullets.</p>
+      <div class="doc-example doc-button-row">
+        <div>
+          <strong>Default list:</strong>
+          <ul class="def-list">
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Simple list:</strong>
+          <ul class="simple-list">
+            <li>Simple item</li>
+            <li>Another simple item</li>
+            <li>Yet another item</li>
+          </ul>
+        </div>
+      </div>
+      <pre><code>&lt;ul class="def-list"&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="simple-list"&gt;
+  &lt;li&gt;Simple item&lt;/li&gt;
+  &lt;li&gt;Another simple item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="text-truncate-clamp">
+      <h2 id="text-truncate-clamp">Text Truncate And Clamp</h2>
+      <p>Use text utilities for single-line ellipsis or multi-line clamping.</p>
+      <div class="doc-example">
+        <p><strong>Single-line truncate:</strong></p>
+        <p class="text-truncate" style="max-width: 300px;">This is a very long text that should be truncated with an ellipsis at the end when it exceeds the container width.</p>
+
+        <p style="margin-top: 16px;"><strong>Multi-line clamp (2 lines):</strong></p>
+        <div class="text-clamp-2" style="max-width: 300px; border: 1px solid #ddd; padding: 8px; background: #f9f9f9;">This is a longer paragraph that will be clamped to exactly two lines. Any text beyond the second line will be hidden with an ellipsis.</div>
+      </div>
+      <pre><code>&lt;p class="text-truncate"&gt;Single-line ellipsis&lt;/p&gt;
+&lt;div class="text-clamp-2"&gt;Multi-line clamp to 2 lines&lt;/div&gt;
+&lt;div class="text-clamp-3"&gt;Multi-line clamp to 3 lines&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="flexbox-utilities">
+      <h2 id="flexbox-utilities">Flexbox Utilities</h2>
+      <p>Use flexbox helpers for row/column layout and alignment.</p>
+      <div class="doc-example">
+        <div style="margin-bottom: 16px;">
+          <p><strong>flex-row with justify-between:</strong></p>
+          <div class="flex-row justify-between" style="gap: 12px; padding: 12px; border: 1px solid #ddd; background: #f9f9f9;">
+            <div style="padding: 8px; background: #e0e0e0;">Item 1</div>
+            <div style="padding: 8px; background: #e0e0e0;">Item 2</div>
+            <div style="padding: 8px; background: #e0e0e0;">Item 3</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <p><strong>flex-col with align-center:</strong></p>
+          <div class="flex-col align-center" style="gap: 8px; padding: 12px; border: 1px solid #ddd; background: #f9f9f9;">
+            <div style="padding: 6px 12px; background: #e0e0e0;">Centered item 1</div>
+            <div style="padding: 6px 12px; background: #e0e0e0;">Centered item 2</div>
+          </div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="flex-row justify-between"&gt;...&lt;/div&gt;
+&lt;div class="flex-col align-center"&gt;...&lt;/div&gt;
+&lt;div class="flex-row flex-wrap"&gt;...&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="aspect-ratio">
+      <h2 id="aspect-ratio">Aspect Ratio</h2>
+      <p>Use aspect ratio utilities to maintain consistent proportions for containers like video players, image galleries, or thumbnails.</p>
+      <div class="doc-example">
+        <p><strong>16:9 aspect ratio:</strong></p>
+        <div class="aspect-ratio-16x9" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 16px;">
+          <span>16x9 container</span>
+        </div>
+
+        <p><strong>1:1 aspect ratio:</strong></p>
+        <div class="aspect-ratio-1x1" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; max-width: 200px;">
+          <span>1x1 container</span>
+        </div>
+      </div>
+      <pre><code>&lt;div class="aspect-ratio-16x9"&gt;Video player&lt;/div&gt;
+&lt;div class="aspect-ratio-1x1"&gt;Square image&lt;/div&gt;
+&lt;div class="aspect-ratio-4x3"&gt;Photo frame&lt;/div&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>

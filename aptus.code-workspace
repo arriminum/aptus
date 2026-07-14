@@ -1,0 +1,60 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "extensions.ignoreRecommendations": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+
+    "files.exclude": {
+      "**/deploy": true,
+      "**/dist": true,
+      "**/*.min.css": true,
+      "**/*.map": true
+    },
+
+    "search.exclude": {
+      "**/deploy": true,
+      "**/dist": true,
+      "**/*.min.css": true,
+      "**/*.map": true
+    },
+
+    "files.watcherExclude": {
+      "**/deploy/**": true,
+      "**/dist/**": true,
+      "**/*.min.css": true,
+      "**/*.map": true
+    },
+
+    "editor.formatOnSave": false,
+
+    "css.validate": true,
+    "scss.validate": false,
+    "less.validate": false,
+
+    "editor.rulers": [
+      100
+    ],
+
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    "emmet.includeLanguages": {
+      "html": "html"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "pranaygp.vscode-css-peek",
+      "zignd.html-css-class-completion",
+      "christian-kohler.path-intellisense",
+      "usernamehw.errorlens",
+      "ritwickdey.LiveServer"
+    ]
+  }
+}

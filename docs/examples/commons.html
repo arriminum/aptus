@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commons CSS Utilities</title>
+  <link rel="stylesheet" href="../../src/commons.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 18px 0;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dedede;
+      margin: 18px 0;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94rem;
+    }
+
+    .doc-example {
+      margin: 14px 0;
+      padding: 16px;
+      border: 1px solid #dddddd;
+      background: #ffffff;
+    }
+
+    .doc-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .doc-box {
+      display: inline-block;
+      min-width: 110px;
+      padding: 12px;
+      background: #eeeeee;
+      color: #444444;
+    }
+
+    .doc-position-preview {
+      position: relative;
+      min-height: 120px;
+      background: #f7f7f7;
+    }
+
+    .doc-position-preview .absolute {
+      top: 16px;
+      right: 16px;
+    }
+
+    .doc-overflow-box {
+      width: 220px;
+      max-height: 54px;
+      border: 1px solid #cccccc;
+      background: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Commons CSS Utilities</h1>
+
+    <section aria-labelledby="input">
+      <h2 id="input">Input</h2>
+      <p>Use input helpers for text or controls that should not be selectable.</p>
+      <div class="doc-example">
+        <p class="noselect">This sentence uses <strong>.noselect</strong>.</p>
+      </div>
+      <pre><code>&lt;p class="noselect"&gt;This sentence cannot be selected easily.&lt;/p&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="position">
+      <h2 id="position">Position</h2>
+      <p>Use position and alignment helpers for simple layout adjustments.</p>
+      <div class="doc-example">
+        <div class="doc-position-preview">
+          <span class="doc-box absolute right-aligned">Absolute right</span>
+          <p class="left-aligned">Left aligned text</p>
+          <p class="center-aligned">Centered text</p>
+          <p class="right-aligned">Right aligned text</p>
+        </div>
+      </div>
+      <pre><code>&lt;div class="absolute"&gt;Positioned element&lt;/div&gt;
+&lt;p class="left-aligned"&gt;Left aligned text&lt;/p&gt;
+&lt;p class="center-aligned"&gt;Centered text&lt;/p&gt;
+&lt;p class="right-aligned"&gt;Right aligned text&lt;/p&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="display">
+      <h2 id="display">Display</h2>
+      <p>Use display helpers to switch between block and inline-block behavior.</p>
+      <div class="doc-example">
+        <span class="doc-box block">Block</span>
+        <span class="doc-box inline-block">Inline block</span>
+        <span class="doc-box inline-block">Inline block</span>
+      </div>
+      <pre><code>&lt;span class="block"&gt;Block element&lt;/span&gt;
+&lt;span class="inline-block"&gt;Inline block element&lt;/span&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="font-weight">
+      <h2 id="font-weight">Font Weight</h2>
+      <p>Use text helpers for stronger emphasis, uppercase text, and long-word wrapping.</p>
+      <div class="doc-example">
+        <p class="strong">This text uses the strong utility.</p>
+        <p class="uppercase">This text is uppercase.</p>
+        <p class="text-break">VeryLongExampleValueThatCanBreakInsideTheAvailableSpaceWhenNeeded</p>
+      </div>
+      <pre><code>&lt;p class="strong"&gt;This text uses the strong utility.&lt;/p&gt;
+&lt;p class="uppercase"&gt;This text is uppercase.&lt;/p&gt;
+&lt;p class="text-break"&gt;VeryLongExampleValueThatCanBreakInsideTheAvailableSpaceWhenNeeded&lt;/p&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="visibility">
+      <h2 id="visibility">Visibility</h2>
+      <p>Use visibility helpers to hide elements visually or remove them from layout.</p>
+      <div class="doc-example doc-row">
+        <span class="doc-box">Visible item</span>
+        <span class="doc-box not-visible">Not visible item</span>
+        <span class="doc-box">Next item keeps the hidden space visible</span>
+      </div>
+      <pre><code>&lt;span class="not-visible"&gt;Hidden but still taking space&lt;/span&gt;
+&lt;span class="hidden"&gt;Removed from layout&lt;/span&gt;
+&lt;span class="invisible"&gt;Hidden and removed from layout&lt;/span&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="rounded-corners">
+      <h2 id="rounded-corners">Rounded Corners</h2>
+      <p>Use rounded corner helpers for small, medium, or larger border radius values.</p>
+      <div class="doc-example doc-row">
+        <span class="doc-box rounded-2px">2px</span>
+        <span class="doc-box rounded-4px">4px</span>
+        <span class="doc-box rounded-8px">8px</span>
+      </div>
+      <pre><code>&lt;div class="rounded-2px"&gt;2px radius&lt;/div&gt;
+&lt;div class="rounded-4px"&gt;4px radius&lt;/div&gt;
+&lt;div class="rounded-8px"&gt;8px radius&lt;/div&gt;</code></pre>
+    </section>
+
+
+    <hr>
+
+    <section aria-labelledby="padding-and-margin">
+      <h2 id="padding-and-margin">Padding And Margin</h2>
+      <p>Use spacing, sizing, and overflow helpers for common box adjustments. Margin utilities: <code>.top*</code>, <code>.bottom*</code>, <code>.left*</code>, <code>.right*</code> (values: 5, 10, 20, 30, 40, 50, 60px). Padding utilities: <code>.pad*</code>, <code>.pad-left*</code>, <code>.pad-right*</code> (values: 10–100px in 10px increments). All margin utilities include <code>!important</code>.</p>
+      <div class="doc-example">
+        <div class="doc-box pad20 bottom20">Padded box (pad20 bottom20)</div>
+        <div class="doc-box pad40 top10">Box with pad40 and top10</div>
+        <div class="doc-box w-100 center-aligned bottom20">Full width box (w-100 center-aligned)</div>
+        <div class="doc-overflow-box overflow-hidden pad10">
+          Overflow hidden example with more text than the box can display comfortably.
+        </div>
+      </div>
+      <pre><code>&lt;div class="pad20 bottom20"&gt;Padded box&lt;/div&gt;
+&lt;div class="pad40 top10"&gt;Box with larger padding and forced top margin&lt;/div&gt;
+&lt;div class="w-100 center-aligned"&gt;Full width box&lt;/div&gt;
+&lt;div class="overflow-hidden pad10"&gt;Overflow hidden content&lt;/div&gt;
+&lt;img class="w-100 h-auto mx-auto" src="image.jpg" alt="Example"&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="go-to-top">
+      <h2 id="go-to-top">Go To Top</h2>
+      <p>The go-to-top utility is fixed-position in real use. This preview overrides display and position inline so it stays inside the documentation flow.</p>
+      <div class="doc-example">
+        <a class="goto-top" style="display: inline-block; position: static;" href="#top" aria-label="Go to top">&uarr;</a>
+      </div>
+      <pre><code>&lt;a class="goto-top" href="#top" aria-label="Go to top"&gt;&amp;uarr;&lt;/a&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>

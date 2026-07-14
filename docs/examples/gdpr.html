@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus GDPR Banner</title>
+  <link rel="stylesheet" href="../../src/reset.css">
+  <link rel="stylesheet" href="../../src/gdpr.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 24px 0;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 32px 0 12px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dedede;
+      margin: 24px 0;
+    }
+
+    .demo-box {
+      border: 1px solid #dedede;
+      padding: 20px;
+      margin: 16px 0;
+      background-color: #fafafa;
+      border-radius: 6px;
+    }
+
+    .code-example {
+      background-color: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 12px;
+      margin: 12px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .note {
+      background-color: #fffacd;
+      border-left: 4px solid #ffd700;
+      padding: 12px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    /* Custom theme example */
+    .custom-theme {
+      --gdpr-bg: #1a1a1a;
+      --gdpr-border: #333;
+      --gdpr-text: #f0f0f0;
+      --gdpr-button-bg: #007bff;
+      --gdpr-button-border: #0056b3;
+      --gdpr-button-text: #fff;
+      --gdpr-button-bg-hover: #0056b3;
+      --gdpr-button-text-hover: #fff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GDPR Banner Component</h1>
+    <p>The GDPR banner is a fixed-position consent notification displayed at the bottom of the page. It includes responsive design, customizable colors via CSS variables, and fade-out animations.</p>
+
+    <hr>
+
+    <section>
+      <h2>Basic Usage</h2>
+      <p>The banner consists of an outer container (`.gdpr-bottom-box`) and an inner card (`.gdpr-bottom-box-cont`). The `#gdpr-box` id with `.noshow` modifier hides the banner.</p>
+      <div class="code-example">&lt;div id="gdpr-box" class="gdpr-bottom-box"&gt;
+  &lt;div class="gdpr-bottom-box-cont"&gt;
+    &lt;p&gt;This site uses cookies to provide services and analyze traffic.&lt;/p&gt;
+    &lt;button type="button"&gt;Accept&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+      <div class="demo-box">
+        <strong>Live demo:</strong> Scroll down to see the banner at the bottom of the viewport.
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Classes</h2>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li><code>.gdpr-bottom-box</code> — outer fixed container, positioned at bottom with full width</li>
+        <li><code>.gdpr-bottom-box-cont</code> — inner card; centered, max-width 960px on desktop, 100% on mobile (≤767.98px)</li>
+        <li><code>#gdpr-box</code> — the banner's id, used for JavaScript interaction</li>
+        <li><code>#gdpr-box.noshow</code> — modifier class that fades out the banner and disables pointer events</li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Color Customization (CSS Variables)</h2>
+      <p>The banner supports customization via CSS custom properties. Projects can override any of these to match their brand:</p>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li><code>--gdpr-bg</code> — banner background (default: #f7f7f7)</li>
+        <li><code>--gdpr-border</code> — banner border color (default: #e5e5e5)</li>
+        <li><code>--gdpr-text</code> — text/paragraph color (default: #292929)</li>
+        <li><code>--gdpr-button-bg</code> — button background (default: #d1d1d1)</li>
+        <li><code>--gdpr-button-border</code> — button border (default: #cbcbcb)</li>
+        <li><code>--gdpr-button-text</code> — button text color (default: #212121)</li>
+        <li><code>--gdpr-button-bg-hover</code> — button background on hover (default: #616161)</li>
+        <li><code>--gdpr-button-text-hover</code> — button text on hover (default: #fff)</li>
+      </ul>
+      <div class="code-example">/* Example: Dark theme */
+#gdpr-box {
+  --gdpr-bg: #1a1a1a;
+  --gdpr-border: #333;
+  --gdpr-text: #f0f0f0;
+  --gdpr-button-bg: #007bff;
+  --gdpr-button-text: #fff;
+}</div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Responsiveness</h2>
+      <p>The banner is fully responsive:</p>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li><strong>Desktop (≥768px):</strong> Card has max-width of 960px, centered on page</li>
+        <li><strong>Mobile (≤767.98px):</strong> Card takes full width with padding, constrained by viewport</li>
+      </ul>
+      <div class="note">
+        <strong>Test responsiveness:</strong> Open this page on different screen sizes or use your browser's responsive design mode (F12) to see the banner adapt.
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>JavaScript Integration</h2>
+      <p>The consuming project's JavaScript is responsible for:</p>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Showing/hiding the banner based on consent state</li>
+        <li>Adding the <code>.noshow</code> class to fade out and hide the banner after the user accepts</li>
+        <li>Persisting consent state (e.g., in localStorage)</li>
+      </ul>
+      <div class="code-example">// Example: Hide banner on button click
+const gdprBox = document.getElementById('gdpr-box');
+const acceptButton = gdprBox.querySelector('button');
+
+acceptButton.addEventListener('click', () => {
+  gdprBox.classList.add('noshow');
+  localStorage.setItem('gdpr-accepted', 'true');
+});</div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Styling Notes</h2>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li><strong>Z-index:</strong> Set to 1000, appropriate for fixed overlays but below modals</li>
+        <li><strong>Position:</strong> Fixed at the bottom of the viewport, always visible when not hidden</li>
+        <li><strong>Fade animation:</strong> Uses CSS `transition` for smooth opacity changes when `.noshow` is added</li>
+        <li><strong>Layout:</strong> Block layout with centered alignment; works across all browsers</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- GDPR Banner Demo -->
+  <div id="gdpr-box" class="gdpr-bottom-box">
+    <div class="gdpr-bottom-box-cont">
+      <p>This website uses cookies to enhance your browsing experience and provide personalized content. By continuing to use this site, you agree to our use of cookies.</p>
+      <button type="button" id="gdpr-accept-btn">Accept All</button>
+    </div>
+  </div>
+
+  <script>
+    // Hide banner on accept button click
+    document.getElementById('gdpr-accept-btn').addEventListener('click', function() {
+      document.getElementById('gdpr-box').classList.add('noshow');
+    });
+  </script>
+</body>
+</html>

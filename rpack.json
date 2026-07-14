@@ -1,0 +1,32 @@
+{
+  "schema": "rpack/v1",
+
+  "project": {
+    "nameFile": "src/APP_NAME",
+    "versionFile": "src/VERSION"
+  },
+
+  "paths": {
+    "resources": "src",
+    "deploy": "dist",
+    "cssLib": "$HOME/lib/css"
+  },
+
+  "build": {
+    "clean": false,
+    "steps": ["css:pages"]
+  },
+
+  "minifies": {
+    "css:pages": [
+      { "path": "reset.css", "output": "reset.min.css" },
+      { "path": "grid.css", "output": "grid.min.css" },
+      { "path": "image.css", "output": "image.min.css" },
+      { "path": "commons.css", "output": "commons.min.css" },
+      { "path": "ui.css", "output": "ui.min.css" },
+      { "path": "message-bar.css", "output": "message-bar.min.css" },
+      { "path": "autocomplete.css", "output": "autocomplete.min.css" },
+      { "path": "gdpr.css", "output": "gdpr.min.css" }
+    ]
+  }
+}

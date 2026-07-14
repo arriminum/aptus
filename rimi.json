@@ -1,0 +1,39 @@
+{
+  "schema": "rimi/v1",
+
+  "project": {
+    "name": "aptus",
+    "versionFile": "src/VERSION",
+    "type": "lib"
+  },
+
+  "paths": {
+    "build": "dist",
+    "install": "$HOME/lib/css/{name}/{version}"
+  },
+
+  "build": {
+    "clean": true,
+    "steps": [
+      {
+        "type": "copy",
+        "from": "src/VERSION",
+        "to": "VERSION"
+      },
+      {
+        "type": "copy",
+        "from": "src/APP_NAME",
+        "to": "APP_NAME"
+      },
+      {
+        "type": "shell",
+        "run": "rpack build",
+        "where": "root"
+      }
+    ]
+  },
+
+  "deploy": {
+    "type": "local-lib"
+  }
+}

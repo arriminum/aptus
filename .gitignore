@@ -1,0 +1,82 @@
+# ----- Build/Deploy
+build/
+deploy/*
+!deploy/.gitkeep
+
+
+
+# ----- PHP
+*.cache
+.phpunit.cache/
+.phpunit.result.cache
+
+
+
+# ----- OS
+
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+
+
+# ---- Logs and temp files
+
+*.log
+*.tmp
+*.bak
+*.swp
+*.pid
+*.seed
+*.orig
+
+
+
+# ----- Editors
+
+*.sublime-project
+*.sublime-workspace
+.idea/
+
+
+
+# ----- Environment
+
+.env
+.env.*
+
+
+
+# ----- Cache
+
+cache/
+tmp/
+sessions/
+
+
+
+# ----- Uploads
+uploads/
+uploads_tmp/
+
+
+
+# ----- Testing
+coverage/
+
+
+
+# ----- Composer
+
+vendor/
+
+
+
+# ----- JS tools
+
+node_modules/
+bower_components/
+npm-debug.log
+yarn-error.log
