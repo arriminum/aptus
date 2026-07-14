@@ -8,6 +8,29 @@ This changelog starts tracking changes from `2.1.3` onward. Changes prior to tha
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-07-14
+
+### Removed
+
+- Message bar close button (`.msg-bar-close-button`, `.msg-close-icon`): removed from the component as messages auto-dismiss and the button had poor UX on mobile, taking up valuable screen space.
+
+### Changed
+
+- Message bar text (`.msg-bar-text`): simplified layout from `inline-block` with margins to `display: block` with padding for cleaner, more predictable rendering.
+
+## [2.5.0] - 2026-07-14
+
+### Changed
+
+- Reset stylesheet (`reset.css`): improved accessibility by replacing blanket `outline: none` with `focus-visible` states that show a 2px outline with `currentColor` and 2px offset, visible on links and form elements.
+- Reset stylesheet: removed `height: 100%` from `body` to prevent unexpected scrolling behavior.
+- Reset stylesheet: removed `background: none` from form elements, allowing default browser backgrounds while maintaining `border: none` for styling flexibility.
+
+### Added
+
+- Reset stylesheet: `font-size: 16px` on `html` for consistent `rem` calculations across consuming projects.
+- Reset stylesheet: styles for previously unstyled elements — `fieldset` (margin, padding, border reset), `hr` (modern border-based style with `currentColor`), `code` and `pre` (monospace font-family), `small` (0.875em sizing).
+
 ## [2.4.0] - 2026-07-14
 
 ### Changed
