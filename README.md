@@ -78,7 +78,7 @@ Edit only files under `src/`. Files in `dist/` are generated and must not be edi
 
 ## Versioning
 
-The current version is the single line in [src/VERSION](src/VERSION). It is bumped whenever a change affects structure, public classes, components, build, deploy, behavior, or documentation, and every such change is recorded in [CHANGELOG.md](CHANGELOG.md). Minor internal-only edits do not require a version bump.
+Aptus follows [Semantic Versioning](docs/versioning.md) (MAJOR.MINOR.PATCH). The current version is the single line in [src/VERSION](src/VERSION). Version bumps are requested explicitly; see [docs/versioning.md](docs/versioning.md) for details on when to bump and how to request one. Every bump is recorded in [CHANGELOG.md](CHANGELOG.md) with the changes that triggered it.
 
 ## Contributing
 

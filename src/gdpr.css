@@ -49,13 +49,13 @@
   }
 }
 
-#gdpr-box {
+:where(#gdpr-box) {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
   pointer-events: auto;
 }
 
-#gdpr-box.noshow {
+:where(#gdpr-box).noshow {
   opacity: 0;
   pointer-events: none;
 }

@@ -24,9 +24,10 @@
       { "path": "image.css", "output": "image.min.css" },
       { "path": "commons.css", "output": "commons.min.css" },
       { "path": "ui.css", "output": "ui.min.css" },
-      { "path": "message-bar.css", "output": "message-bar.min.css" },
+      { "path": "notification.css", "output": "notification.min.css" },
       { "path": "autocomplete.css", "output": "autocomplete.min.css" },
-      { "path": "gdpr.css", "output": "gdpr.min.css" }
+      { "path": "gdpr.css", "output": "gdpr.min.css" },
+      { "path": "datalist.css", "output": "datalist.min.css" }
     ]
   }
 }

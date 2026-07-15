@@ -2,6 +2,7 @@
 build/
 deploy/*
 !deploy/.gitkeep
+dist/
 
 
 

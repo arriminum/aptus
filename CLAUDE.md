@@ -8,10 +8,7 @@ Do not hard-wrap Markdown paragraphs. Keep each paragraph on a single line unles
 
 ## Versioning & changelog (mandatory)
 
-- `src/VERSION` is the single source of truth.
-- Every meaningful change (page, component, CSS behavior, docs, reusable pattern) gets an entry in `CHANGELOG.md`.
-- Bump `src/VERSION` when a change affects structure, public pages, components, build, deploy, behavior, or docs. The version in `CHANGELOG.md` must match `src/VERSION`.
-- Do not bump the version for minimal changes.
+See the "Versioning & changelog" section in [AGENTS.md](AGENTS.md) — in short: bumping `src/VERSION` is manual and only happens when the user explicitly asks for it in the conversation, never on an agent's own initiative. Until then, log pending changes in `CHANGELOG.md` under `Unreleased`.
 
 ## When you finish a task
 

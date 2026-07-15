@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus Grid CSS</title>
+  <link rel="stylesheet" href="../../src/grid.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 18px 0;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dedede;
+      margin: 18px 0;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94rem;
+    }
+
+    .doc-example {
+      margin: 14px 0;
+      padding: 16px;
+      border: 1px solid #dddddd;
+      background: #ffffff;
+    }
+
+    /* Demo-only box styling for the columns below; not part of Aptus. */
+    .demo-box {
+      padding: 10px;
+      background: #eef3fb;
+      border: 1px solid #c8d6ec;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .demo-box-alt {
+      background: #fdf0e6;
+      border-color: #eccba9;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Grid CSS</h1>
+    <p>12-column, float-based grid. Columns stack full-width below <code>768px</code> and take their fractional width at and above it. Resize the window to see the responsive behavior.</p>
+
+    <section aria-labelledby="basic">
+      <h2 id="basic">Basic row</h2>
+      <p>A <code>.g-row</code> with equal <code>.col6</code> columns.</p>
+      <div class="doc-example">
+        <div class="g-row">
+          <div class="col6"><div class="demo-box">.col6</div></div>
+          <div class="col6"><div class="demo-box">.col6</div></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="g-row"&gt;
+  &lt;div class="col6"&gt;First column&lt;/div&gt;
+  &lt;div class="col6"&gt;Second column&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="thirds">
+      <h2 id="thirds">Unequal columns</h2>
+      <p>Columns don't need to be equal; any combination that adds up to 12 works.</p>
+      <div class="doc-example">
+        <div class="g-row">
+          <div class="col4"><div class="demo-box">.col4</div></div>
+          <div class="col4"><div class="demo-box">.col4</div></div>
+          <div class="col4"><div class="demo-box">.col4</div></div>
+        </div>
+      </div>
+      <div class="doc-example">
+        <div class="g-row">
+          <div class="col3"><div class="demo-box">.col3</div></div>
+          <div class="col9"><div class="demo-box">.col9</div></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="g-row"&gt;
+  &lt;div class="col4"&gt;...&lt;/div&gt;
+  &lt;div class="col4"&gt;...&lt;/div&gt;
+  &lt;div class="col4"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="g-row"&gt;
+  &lt;div class="col3"&gt;...&lt;/div&gt;
+  &lt;div class="col9"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="gutter">
+      <h2 id="gutter">Gutter</h2>
+      <p>Add <code>.gutter</code> to <code>.g-row</code> to space columns apart horizontally, instead of having them sit flush against each other.</p>
+      <div class="doc-example">
+        <div class="g-row gutter">
+          <div class="col4"><div class="demo-box">.col4</div></div>
+          <div class="col4"><div class="demo-box">.col4</div></div>
+          <div class="col4"><div class="demo-box">.col4</div></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="g-row gutter"&gt;
+  &lt;div class="col4"&gt;...&lt;/div&gt;
+  &lt;div class="col4"&gt;...&lt;/div&gt;
+  &lt;div class="col4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="offset">
+      <h2 id="offset">Offset</h2>
+      <p>Use <code>.col-offset1</code>–<code>.col-offset11</code> on a column to push it to the right by that many columns, leaving empty space instead of a placeholder column.</p>
+      <div class="doc-example">
+        <div class="g-row">
+          <div class="col6 col-offset3"><div class="demo-box demo-box-alt">.col6 .col-offset3</div></div>
+        </div>
+      </div>
+      <div class="doc-example">
+        <div class="g-row">
+          <div class="col4"><div class="demo-box">.col4</div></div>
+          <div class="col4 col-offset4"><div class="demo-box demo-box-alt">.col4 .col-offset4</div></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="g-row"&gt;
+  &lt;div class="col6 col-offset3"&gt;Centered column&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="g-row"&gt;
+  &lt;div class="col4"&gt;...&lt;/div&gt;
+  &lt;div class="col4 col-offset4"&gt;Pushed further right&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="gutter-offset">
+      <h2 id="gutter-offset">Gutter and offset combined</h2>
+      <p><code>.gutter</code> and <code>.col-offset*</code> can be combined on the same row.</p>
+      <div class="doc-example">
+        <div class="g-row gutter">
+          <div class="col3 col-offset1"><div class="demo-box demo-box-alt">.col3 .col-offset1</div></div>
+          <div class="col3"><div class="demo-box">.col3</div></div>
+          <div class="col3"><div class="demo-box">.col3</div></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="g-row gutter"&gt;
+  &lt;div class="col3 col-offset1"&gt;...&lt;/div&gt;
+  &lt;div class="col3"&gt;...&lt;/div&gt;
+  &lt;div class="col3"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="flex-align">
+      <h2 id="flex-align">Flex vertical alignment</h2>
+      <p>Add <code>.flex-align</code> to <code>.g-row</code> to switch it to <code>display: flex; align-items: center</code> so columns of different heights align vertically. Use <code>.align-top</code>, <code>.align-middle</code>, or <code>.align-bottom</code> on a column to override its own alignment.</p>
+      <div class="doc-example">
+        <div class="g-row flex-align">
+          <div class="col4"><div class="demo-box" style="padding-top: 40px; padding-bottom: 40px;">Tall column</div></div>
+          <div class="col4"><div class="demo-box align-top">.align-top</div></div>
+          <div class="col4"><div class="demo-box align-bottom">.align-bottom</div></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="g-row flex-align"&gt;
+  &lt;div class="col4"&gt;Tall column&lt;/div&gt;
+  &lt;div class="col4 align-top"&gt;...&lt;/div&gt;
+  &lt;div class="col4 align-bottom"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>

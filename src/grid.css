@@ -1,5 +1,7 @@
 
 
+/* ROW ----- */
+
 .g-row {
   position: relative;
   text-align: center;
@@ -12,6 +14,15 @@
   clear: both;
   display: table;
 }
+
+.g-row.gutter {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+
+
+/* COLUMNS ----- */
 
 .col1,
 .col2,
@@ -28,10 +39,7 @@
   width: 100%;
   float: none;
   display: block;
-  width: 100%;
   padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -87,49 +95,70 @@
 }
 
 
-.four-col,
-.four-col,
-.four-col,
-.four-col {
-  width: 100%;
-  float: none;
-  display: block;
-  width: 100%;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+
+/* GUTTER ----- */
 
 @media only screen and (min-width: 768px) {
-  .four-col {
-    float: left;
-    width: 50%;
-  }
-  .four-col {
-    float: left;
-    width: 50%;
-  }
-  .four-col {
-    float: left;
-    width: 50%;
-  }
-  .four-col {
-    float: left;
-    width: 50%;
-  }
-}
-@media only screen and (min-width: 1096px) {
-  .four-col,
-  .four-col,
-  .four-col,
-  .four-col {
-    float: left;
-    width: 25%;
+  .g-row.gutter > .col1,
+  .g-row.gutter > .col2,
+  .g-row.gutter > .col3,
+  .g-row.gutter > .col4,
+  .g-row.gutter > .col5,
+  .g-row.gutter > .col6,
+  .g-row.gutter > .col7,
+  .g-row.gutter > .col8,
+  .g-row.gutter > .col9,
+  .g-row.gutter > .col10,
+  .g-row.gutter > .col11,
+  .g-row.gutter > .col12 {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
 
+
+/* OFFSET ----- */
+
+@media only screen and (min-width: 768px) {
+  .col-offset1 {
+    margin-left: 8.33%;
+  }
+  .col-offset2 {
+    margin-left: 16.66%;
+  }
+  .col-offset3 {
+    margin-left: 25%;
+  }
+  .col-offset4 {
+    margin-left: 33.33%;
+  }
+  .col-offset5 {
+    margin-left: 41.66%;
+  }
+  .col-offset6 {
+    margin-left: 50%;
+  }
+  .col-offset7 {
+    margin-left: 58.33%;
+  }
+  .col-offset8 {
+    margin-left: 66.66%;
+  }
+  .col-offset9 {
+    margin-left: 75%;
+  }
+  .col-offset10 {
+    margin-left: 83.33%;
+  }
+  .col-offset11 {
+    margin-left: 91.66%;
+  }
+}
+
+
+
+/* FLEX ALIGN ----- */
 
 @media only screen and (min-width: 768px) {
   .g-row.flex-align {
@@ -168,4 +197,3 @@
     align-self: flex-end;
   }
 }
-

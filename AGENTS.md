@@ -63,8 +63,10 @@ Do not hard-wrap Markdown paragraphs. Keep each paragraph on a single line unles
 
 - `src/VERSION` is the single source of truth.
 - Every meaningful change (page, component, CSS behavior, docs, reusable pattern) gets an entry in `CHANGELOG.md`.
-- Bump `src/VERSION` when a change affects structure, public classes, components, build, deploy, behavior, or docs. The version in `CHANGELOG.md` must match `src/VERSION`.
-- Do not bump the version for minimal changes.
+- Bumping `src/VERSION` is manual and requires an explicit request from the user in the conversation. An agent must never bump the version on its own initiative, even for a change that "affects structure, public classes, components, build, deploy, behavior, or docs."
+- When a change would warrant a version bump under the criteria above but the user has not asked for one, add the `CHANGELOG.md` entry under an `Unreleased` heading (not tied to a version number) and note in your summary that a bump is pending user approval.
+- Tag every `Unreleased` entry with `(patch)`, `(minor)`, or `(major)` at the time you write it, per the rules in [docs/versioning.md](docs/versioning.md). Decide this while the change is fresh in context — do not leave it untagged for a future bump request to re-derive from the diff.
+- Once the user asks for a bump, move the `Unreleased` entries under the new version heading (the bump type is the highest tag among them) and update `src/VERSION` to match.
 
 ## What to update alongside a change
 

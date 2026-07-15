@@ -6,7 +6,40 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 This changelog starts tracking changes from `2.1.3` onward. Changes prior to that version were not recorded here.
 
-## [Unreleased]
+## [2.8.0] - 2026-07-15
+
+### Added
+
+- New module `datalist.css` for tables of data fetched from a service: `.datalist-table`, `.datalist-row-alt`, `.datalist-no-hover`, `.datalist-empty`, `.datalist-action-link`, `.datalist-summary`, `.datalist-pager`, `.datalist-pager-current`. Colors, font size/weight, and header corner rounding are customizable via `--datalist-*` CSS variables with fallbacks, including `--datalist-font-size`, `--datalist-font-weight`, `--datalist-action-font-weight`, and `--datalist-head-radius`. (minor)
+- `docs/examples/datalist.html`, runnable examples covering the basic table, hover states, row actions, empty state, and the summary/pager footer. (minor)
+- `grid.css`: `.g-row.gutter`, adding horizontal spacing between a row's columns instead of having them sit flush against each other. (minor)
+- `grid.css`: `.col-offset1`–`.col-offset11`, pushing a column right by that many columns of empty space without needing a placeholder column. (minor)
+- `docs/examples/grid.html`, runnable examples of the grid covering equal/unequal columns, gutters, offsets, and flex alignment. (minor)
+- `image.css`: `.subtle-shadow` for a lighter drop shadow than `.light-shadow`. (minor)
+- `image.css`: `.base-shadow` for a drop shadow offset toward the bottom, giving images a "resting on a surface" effect. (minor)
+- `image.css`: `.rounded-img` and `.circle-img` for rounded and fully circular images. (minor)
+- `image.css`: `.img-cover` and `.img-contain`, `object-fit` helpers meant to pair with `.aspect-ratio-*` (from `ui.css`) or other fixed-size containers. (minor)
+- `image.css`: `.img-grayscale`, a grayscale-by-default filter that reveals full color on hover. (minor)
+- `image.css`: `.img-zoom-wrap`, a wrapper that clips and smoothly zooms its child image on hover. (minor)
+- `image.css`: `.img-caption-wrap` / `.img-caption`, for overlaying a caption with a dark gradient at the bottom of an image. (minor)
+
+### Removed
+
+- Polaroid image utilities (`.pol-img`, `.pol-shadow`) removed from `image.css`; they were an old, unused visual style and duplicated the shadow utilities. (major)
+- `.four-col` removed from `grid.css`; it was a broken leftover (the same selector repeated four times with an undocumented `min-width: 1096px` breakpoint) with no confirmed usage in any consuming project. (major)
+
+### Changed
+
+- `image.css`: `.def-shadow` renamed to `.light-shadow` (previous `.light-shadow` values are gone; the old lighter shadow is now `.subtle-shadow`). Consuming projects using `.def-shadow` must switch to `.light-shadow`. (major)
+- Module file renamed from `src/message-bar.css` to `src/notification.css` (distribution file: `dist/notification.min.css`) to better reflect its content: message bar, form error box, overlay, and toast notifications. (major)
+- Message bar (`.msg-bar-info`, `.msg-bar-error`): added CSS variables for color customization (`--color-text-inverse`, `--color-success`, `--color-error`) with sensible fallbacks for better theming flexibility. (minor)
+- Message bar: added `box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)` to improve visual hierarchy and separation from page content. (minor)
+- Message bar: mobile breakpoint aligned with project standard, changed from `max-width: 600px` to `max-width: 767.98px` (matching `.mob-hidden` and other responsive utilities). (patch)
+- Form error icon (`.form-error-icon`): mask image URL changed from an absolute path (`/res/img/aptus/form-error.svg`) to a path relative to the CSS file (`../img/aptus/form-error.svg`), so apps installed under a subdirectory of the web root resolve the icon correctly with no extra configuration. This assumes the standard `res/{css,img,js}` sibling layout documented in `docs/requirements.md`; if a consuming project serves `dist/notification.min.css` from a location where `../img/aptus/` does not resolve to the actual image directory, the icon will fail to load silently (the form error text still renders). (patch)
+
+### Fixed
+
+- `grid.css`: removed duplicated `width: 100%` declarations in the `.col1`–`.col12` base rule and obsolete `-webkit-box-sizing` / `-moz-box-sizing` vendor prefixes. (patch)
 
 ## [2.6.0] - 2026-07-14
 
@@ -17,69 +50,3 @@ This changelog starts tracking changes from `2.1.3` onward. Changes prior to tha
 ### Changed
 
 - Message bar text (`.msg-bar-text`): simplified layout from `inline-block` with margins to `display: block` with padding for cleaner, more predictable rendering.
-
-## [2.5.0] - 2026-07-14
-
-### Changed
-
-- Reset stylesheet (`reset.css`): improved accessibility by replacing blanket `outline: none` with `focus-visible` states that show a 2px outline with `currentColor` and 2px offset, visible on links and form elements.
-- Reset stylesheet: removed `height: 100%` from `body` to prevent unexpected scrolling behavior.
-- Reset stylesheet: removed `background: none` from form elements, allowing default browser backgrounds while maintaining `border: none` for styling flexibility.
-
-### Added
-
-- Reset stylesheet: `font-size: 16px` on `html` for consistent `rem` calculations across consuming projects.
-- Reset stylesheet: styles for previously unstyled elements — `fieldset` (margin, padding, border reset), `hr` (modern border-based style with `currentColor`), `code` and `pre` (monospace font-family), `small` (0.875em sizing).
-
-## [2.4.0] - 2026-07-14
-
-### Changed
-
-- GDPR banner (`gdpr.css`): responsive layout improved; `display: inline-block` changed to `display: block` with `margin: 0 auto` for proper centering and width handling.
-- GDPR banner breakpoint aligned with project standard: `max-width: 1048px` removed and replaced with single mobile breakpoint at `max-width: 767.98px` (matching other responsive utilities).
-- GDPR banner: `border-radius: 8px 8px 8px 8px` simplified to `border-radius: 8px`.
-- GDPR banner: `z-index` lowered from `9991` to `1000` (standard for fixed overlays).
-- GDPR banner: `!important` removed from media query (unnecessary due to CSS cascade specificity).
-
-### Added
-
-- GDPR banner color customization via CSS variables: `--gdpr-bg`, `--gdpr-border`, `--gdpr-text`, `--gdpr-button-bg`, `--gdpr-button-border`, `--gdpr-button-text`, `--gdpr-button-bg-hover`, `--gdpr-button-text-hover`, all with sensible fallbacks.
-- `docs/examples/gdpr.html`: complete reference and interactive test page for the GDPR banner component, including responsive behavior demonstration and JavaScript integration example.
-
-## [2.3.0] - 2026-07-14
-
-### Changed
-
-- Responsive breakpoint for grid and responsive utilities standardized to `min-width: 768px` (previously 800px), aligning with industry standard breakpoints and eliminating the intermediate breakpoint gap. Mobile utilities remain at `max-width: 767.98px`.
-
-## [2.2.0] - 2026-07-14
-
-### Added
-
-- New spacing utilities: `.top60`, `.bottom60`, `.left40`–`.left60`, `.right40`–`.right60` for direct margin utilities; expanded `.pad*` scale to 10–100px (increments of 10); expanded responsive padding (`.res-pad-*`) to 10–100px; expanded responsive margin (`.res-margin-*`) to include 60px variant.
-- New flexbox utility classes: `.flex-row`, `.flex-col`, `.flex-wrap`, `.flex-nowrap`, `.justify-{start,center,end,between,around}`, `.align-{start,center,end,stretch}`.
-- New text utilities: `.text-truncate` (single-line ellipsis), `.text-clamp-1` through `.text-clamp-5` (multi-line clamping with `-webkit-line-clamp` and standard `line-clamp`).
-- New aspect ratio utilities: `.aspect-ratio-1x1`, `.aspect-ratio-16x9`, `.aspect-ratio-4x3`, `.aspect-ratio-21x9`, `.aspect-ratio-3x2`.
-- Moved `.status-active`, `.status-inactive` from `commons.css` to `ui.css` as `.ui-status-active`, `.ui-status-inactive` (old class names retained as aliases in `ui.css` for compatibility).
-- Moved `.def-list` and `.simple-list` from `commons.css` to `ui.css`.
-- `docs/conventions.md`: documented three coexisting spacing utility families (direct scale, semantic abbreviations, responsive) and updated `!important` guidance to include `.top*` and `.bottom*` utilities.
-
-### Fixed
-
-- `.status-inactive` now uses `--color-gray` instead of incorrectly referencing `--color-green`; fallback changed to `#595959`.
-- `.invisible` no longer contains redundant `visibility: hidden;` declaration.
-- `.simple-list` padding corrected: changed from `padding-left: 1.2em` to `padding-left: 0` (list has no bullets).
-- Renamed `.res-top-margin-*` → `.res-margin-top-*` for consistency with `.res-margin-left-*` and `.res-margin-right-*` naming.
-- All `.top*` and `.bottom*` margin utilities now include `!important` for consistency and clarity of intent.
-
-### Changed
-
-- Applied `!important` to all `.top*` and `.bottom*` margin utilities (previously inconsistent).
-
-## [2.1.3] - 2026-07-14
-
-### Added
-
-- Project documentation: `README.md`, `CLAUDE.md`, `AGENTS.md`, `docs/requirements.md`, `docs/conventions.md`, and `docs/usage.md`.
-- `LICENSE` file (MIT).
-- This `CHANGELOG.md` file.

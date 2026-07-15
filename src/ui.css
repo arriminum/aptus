@@ -279,7 +279,7 @@
 
 /* OLD BROWSER ----- */
 
-#old-browser-warning {
+:where(#old-browser-warning) {
   position: fixed;
   top: 0;
   left: 0;

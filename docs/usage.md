@@ -19,8 +19,12 @@ Applies `box-sizing: border-box`, removes default margin/padding on `html`/`body
 
 - `.g-row` — row container; clears its floated columns.
 - `.col1` … `.col12` — column widths on a 12-column grid. Columns stack full-width by default and take their fractional width from `min-width: 800px` upward.
+- `.g-row.gutter` — above `min-width: 800px`, adds horizontal spacing between the row's columns instead of having them sit flush against each other.
+- `.col-offset1` … `.col-offset11` — used on a column above `min-width: 800px` to push it right by that many columns of empty space, without needing an empty placeholder column.
 - `.g-row.flex-align` — above `min-width: 800px`, switches the row to `display: flex; align-items: center` instead of floats.
 - `.align-top`, `.align-middle`, `.align-bottom` — used on a column inside `.g-row.flex-align` to set `align-self`.
+
+See [docs/examples/grid.html](examples/grid.html) for runnable examples of equal and unequal columns, gutters, offsets, and flex alignment.
 
 ## Structure and spacing (`commons.css`)
 
@@ -97,10 +101,16 @@ Fixed-position button, hidden by default (`display: none`); a consuming project'
 
 ## Images (`image.css`)
 
-- `.pol-img` — polaroid-style framed image (white border and soft shadow).
-- `.pol-shadow` — standalone polaroid-style shadow, no border.
-- `.def-shadow` — default drop shadow.
-- `.light-shadow` — lighter drop shadow.
+- `.light-shadow` — default soft drop shadow, even on all sides.
+- `.subtle-shadow` — lighter drop shadow than `.light-shadow`, for a barely-there lift.
+- `.base-shadow` — drop shadow offset toward the bottom, for a "resting on a surface" effect.
+- `.rounded-img` — rounded corners.
+- `.circle-img` — fully circular image (requires a square image or container).
+- `.img-cover` — fills its container using `object-fit: cover`; pair with a fixed-size or `.aspect-ratio-*` container.
+- `.img-contain` — fits inside its container using `object-fit: contain`, without cropping.
+- `.img-grayscale` — grayscale by default, full color on hover.
+- `.img-zoom-wrap` — wrapper that clips and smoothly zooms its child `<img>` on hover.
+- `.img-caption-wrap` / `.img-caption` — overlays a caption with a dark gradient at the bottom of the image; wrap the image and a `.img-caption` element in `.img-caption-wrap`.
 
 ## UI (`ui.css`)
 
@@ -177,7 +187,7 @@ Fixed banner at the top of the viewport; `#old-browser-warning` is an id, meant 
 
 `.spacer` is a full-width, zero-content block whose height comes from `--spacer-size`; combine it with `.spacer-10`, `.spacer-20`, `.spacer-30`, `.spacer-40`, or `.spacer-50` to set that height.
 
-## Message bar and forms (`message-bar.css`)
+## Notifications (`notification.css`)
 
 ### Message bar
 
@@ -235,3 +245,60 @@ Styling for a text-input autocomplete suggestion list (no JavaScript included):
 
 - `.gdpr-bottom-box` / `.gdpr-bottom-box-cont` — fixed bottom consent banner and its inner card.
 - `#gdpr-box.noshow` — id-based modifier that fades the banner out and disables pointer events; toggled by a project's JavaScript after consent is given.
+
+## Datalist (`datalist.css`)
+
+Styling for a table of data fetched from a service: header, hoverable rows, row actions, empty state, and a summary/pager footer.
+
+```html
+<table class="datalist-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-id="16">
+      <td>John Smith</td>
+      <td>Manager</td>
+    </tr>
+    <tr data-id="17" class="datalist-row-alt">
+      <td>Alice Doe</td>
+      <td>Analyst</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="datalist-summary">
+  <span>Total de registros: 2</span>
+  <ul class="datalist-pager">
+    <li><a href="#">&laquo;</a></li>
+    <li><span class="datalist-pager-current">1</span></li>
+    <li><a href="#">&raquo;</a></li>
+  </ul>
+</div>
+```
+
+- `.datalist-table` — the table itself; rows highlight on hover by default.
+- `.datalist-no-hover` — add to `.datalist-table` to disable the row hover highlight, for non-clickable rows.
+- `.datalist-row-alt` — zebra-striping modifier for a `<tr>`.
+- `.datalist-action-link` — inline command/link inside a cell (edit, delete, etc.).
+- `.datalist-empty` — "no results" panel shown when the table has no rows.
+- `.datalist-summary` — footer row pairing a record count with `.datalist-pager`.
+- `.datalist-pager` / `.datalist-pager-current` — pagination list and its current-page indicator.
+
+All colors, plus font size/weight and header corner rounding, are customizable per project via `--datalist-*` CSS variables; each has a fallback so the module works unstyled out of the box:
+
+- `--datalist-font-size` (`13px`) — base font size for the table and `.datalist-empty`, so the empty-state message never renders larger than the table content.
+- `--datalist-font-weight` (`600`) — header (`th`) font weight.
+- `--datalist-action-font-weight` (`400`) — `.datalist-action-link` font weight; raise it per project for a heavier-looking action link.
+- `--datalist-head-radius` (`6px`) — rounds the top-left/top-right corners of the header row; set to `0` to disable.
+- `--datalist-head-bg` / `--datalist-head-color` — header background/text color.
+- `--datalist-row-hover-bg`, `--datalist-row-alt-bg` — row hover and zebra-stripe background.
+- `--datalist-text-color` — body cell text color.
+- `--datalist-empty-bg` / `--datalist-empty-color` — empty-state panel colors.
+- `--datalist-action-color` / `--datalist-action-hover-color` — row action link colors.
+- `--datalist-summary-color` — summary/footer text color.
+- `--datalist-pager-bg` / `--datalist-pager-color` / `--datalist-pager-border`, `--datalist-pager-hover-bg` / `--datalist-pager-hover-color` — pager link colors.
+- `--datalist-pager-current-bg` / `--datalist-pager-current-color` / `--datalist-pager-current-border` — current-page indicator colors.

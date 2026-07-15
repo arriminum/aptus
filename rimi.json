@@ -27,6 +27,16 @@
       },
       {
         "type": "shell",
+        "run": "csstree-validator src",
+        "where": "root"
+      },
+      {
+        "type": "shell",
+        "run": "stylelint src/**/*.css",
+        "where": "root"
+      },
+      {
+        "type": "shell",
         "run": "rpack build",
         "where": "root"
       }

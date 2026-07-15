@@ -1,15 +1,51 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
+    "BASH_MAX_OUTPUT_LENGTH": "8000"
+  },
+  "attribution": { "commits": false, "pullRequests": false },
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
-      "Bash",
-      "Read(/**)",
-      "Edit",
-      "Write"
+      "WebSearch",
+      "WebFetch",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(find *)",
+      "Bash(tree *)",
+      "Bash(wc *)",
+      "Bash(diff *)",
+      "Bash(pwd *)",
+      "Bash(which *)",
+      "Bash(file *)",
+      "Bash(stat *)",
+      "Bash(env *)",
+      "Bash(date *)",
+      "Bash(jq *)",
+      "Bash(yq *)",
+      "Bash(git *)",
+      "Bash(php *)",
+      "Bash(node *)",
+      "Bash(npx *)",
+      "Bash(pnpm *)",
+      "Bash(python3 *)",
+      "Bash(rpack *)",
+      "Bash(rimi *)"
     ],
     "deny": [
       "Bash(rm -rf *)",
-      "Bash(rm -fr *)",
-      "Bash(rm -r *)"
+      "Bash(rmdir *)",
+      "Bash(dd *)",
+      "Bash(chmod -R 777 *)"
     ]
-  }
+  },
+  "effortLevel": "low",
+  "skipWorkflowUsageWarning": true,
+  "feedbackSurveyRate": 0,
+  "cleanupPeriodDays": 7
 }

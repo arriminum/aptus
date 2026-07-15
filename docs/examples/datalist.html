@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus Datalist CSS</title>
+  <link rel="stylesheet" href="../../src/datalist.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 18px 0;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dedede;
+      margin: 18px 0;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94rem;
+    }
+
+    .doc-example {
+      margin: 14px 0;
+      padding: 16px;
+      border: 1px solid #dddddd;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Datalist CSS</h1>
+    <p>Styling for tabular data fetched from a service: sortable-looking headers, hoverable rows, row actions, and a summary/pager footer.</p>
+
+    <section aria-labelledby="basic">
+      <h2 id="basic">Basic table</h2>
+      <p><code>.datalist-table</code> on a <code>&lt;table&gt;</code>. Rows highlight on hover by default.</p>
+      <div class="doc-example">
+        <table class="datalist-table">
+          <thead>
+            <tr>
+              <th width="44%">Nome</th>
+              <th width="24%">Tipo</th>
+              <th width="16%">Criação</th>
+              <th width="16%">Último acesso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-id="16">
+              <td>John Smith</td>
+              <td>Manager</td>
+              <td>10/07/2026</td>
+              <td></td>
+            </tr>
+            <tr data-id="17" class="datalist-row-alt">
+              <td>Alice Doe</td>
+              <td>Analyst</td>
+              <td>02/03/2026</td>
+              <td>14/07/2026</td>
+            </tr>
+            <tr data-id="18">
+              <td>Bruno Alves</td>
+              <td>Analyst</td>
+              <td>21/01/2026</td>
+              <td>15/07/2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pre><code>&lt;table class="datalist-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th width="44%"&gt;Nome&lt;/th&gt;
+      &lt;th width="24%"&gt;Tipo&lt;/th&gt;
+      &lt;th width="16%"&gt;Criação&lt;/th&gt;
+      &lt;th width="16%"&gt;Último acesso&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr data-id="16"&gt;
+      &lt;td&gt;John Smith&lt;/td&gt;
+      &lt;td&gt;Manager&lt;/td&gt;
+      &lt;td&gt;10/07/2026&lt;/td&gt;
+      &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-id="17" class="datalist-row-alt"&gt;
+      ...
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="no-hover">
+      <h2 id="no-hover">Disabling row hover</h2>
+      <p>Add <code>.datalist-no-hover</code> to <code>.datalist-table</code> when rows are not clickable.</p>
+      <div class="doc-example">
+        <table class="datalist-table datalist-no-hover">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Smith</td>
+              <td>Manager</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pre><code>&lt;table class="datalist-table datalist-no-hover"&gt;...&lt;/table&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="actions">
+      <h2 id="actions">Row actions</h2>
+      <p><code>.datalist-action-link</code> for inline links/commands inside a cell, such as edit or delete.</p>
+      <div class="doc-example">
+        <table class="datalist-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Smith</td>
+              <td><a href="#" class="datalist-action-link"><i>✎</i>Editar</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pre><code>&lt;a href="#" class="datalist-action-link"&gt;&lt;i&gt;✎&lt;/i&gt;Editar&lt;/a&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="empty">
+      <h2 id="empty">Empty state</h2>
+      <p><code>.datalist-empty</code> for a "no results" row or panel below the table.</p>
+      <div class="doc-example">
+        <table class="datalist-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+        </table>
+        <div class="datalist-empty">Nenhum registro encontrado.</div>
+      </div>
+      <pre><code>&lt;div class="datalist-empty"&gt;Nenhum registro encontrado.&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="summary-pager">
+      <h2 id="summary-pager">Summary and pager</h2>
+      <p><code>.datalist-summary</code> wraps a record count and a <code>.datalist-pager</code> list; the current page uses <code>.datalist-pager-current</code> instead of a link.</p>
+      <div class="doc-example">
+        <div class="datalist-summary">
+          <span>Total de registros: 3</span>
+          <ul class="datalist-pager">
+            <li><a href="#">&laquo;</a></li>
+            <li><span class="datalist-pager-current">1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">&raquo;</a></li>
+          </ul>
+        </div>
+      </div>
+      <pre><code>&lt;div class="datalist-summary"&gt;
+  &lt;span&gt;Total de registros: 3&lt;/span&gt;
+  &lt;ul class="datalist-pager"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;&laquo;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="datalist-pager-current"&gt;1&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;&raquo;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>

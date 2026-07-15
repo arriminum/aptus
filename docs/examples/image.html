@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus Image CSS</title>
+  <link rel="stylesheet" href="../../src/image.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 18px 0;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dedede;
+      margin: 18px 0;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94rem;
+    }
+
+    .doc-example {
+      margin: 14px 0;
+      padding: 16px;
+      border: 1px solid #dddddd;
+      background: #ffffff;
+    }
+
+    .doc-image-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+      padding-bottom: 12px;
+    }
+
+    .doc-image-row figure {
+      margin: 0;
+      text-align: center;
+    }
+
+    .doc-image-row figcaption {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #555555;
+    }
+
+    .doc-image-row img {
+      display: block;
+      width: 200px;
+      height: 140px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Image CSS</h1>
+
+    <section aria-labelledby="shadow">
+      <h2 id="shadow">Shadow</h2>
+      <p>Use shadow utilities to add a soft box-shadow around an image or container.</p>
+      <div class="doc-example doc-image-row">
+        <figure>
+          <img
+            class="light-shadow"
+            alt="Neutral placeholder with light shadow"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect width='400' height='220' fill='%23eeeeee'/%3E%3Cpath d='M0 220 130 90l72 72 52-52 146 110z' fill='%23cccccc'/%3E%3Ccircle cx='302' cy='66' r='30' fill='%23d8d8d8'/%3E%3C/svg%3E">
+          <figcaption>.light-shadow<br>0 0 8px rgba(0,0,0,.2)</figcaption>
+        </figure>
+        <figure>
+          <img
+            class="subtle-shadow"
+            alt="Neutral placeholder with subtle shadow"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect width='400' height='220' fill='%23eeeeee'/%3E%3Cpath d='M0 220 130 90l72 72 52-52 146 110z' fill='%23cccccc'/%3E%3Ccircle cx='302' cy='66' r='30' fill='%23d8d8d8'/%3E%3C/svg%3E">
+          <figcaption>.subtle-shadow<br>0 0 5px rgba(0,0,0,.12)</figcaption>
+        </figure>
+        <figure>
+          <img
+            class="base-shadow"
+            alt="Neutral placeholder with base shadow"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect width='400' height='220' fill='%23eeeeee'/%3E%3Cpath d='M0 220 130 90l72 72 52-52 146 110z' fill='%23cccccc'/%3E%3Ccircle cx='302' cy='66' r='30' fill='%23d8d8d8'/%3E%3C/svg%3E">
+          <figcaption>.base-shadow<br>0 6px 12px rgba(0,0,0,.2)</figcaption>
+        </figure>
+      </div>
+      <pre><code>&lt;img class="light-shadow" src="docs/assets/example.jpg" alt="Example image"&gt;
+&lt;img class="subtle-shadow" src="docs/assets/example.jpg" alt="Example image"&gt;
+&lt;img class="base-shadow" src="docs/assets/example.jpg" alt="Example image"&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="shape">
+      <h2 id="shape">Shape</h2>
+      <p>Use shape utilities to round the corners of an image, or make it fully circular.</p>
+      <div class="doc-example doc-image-row">
+        <figure>
+          <img
+            class="rounded-img"
+            alt="Neutral placeholder with rounded corners"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect width='400' height='220' fill='%23eeeeee'/%3E%3Cpath d='M0 220 130 90l72 72 52-52 146 110z' fill='%23cccccc'/%3E%3Ccircle cx='302' cy='66' r='30' fill='%23d8d8d8'/%3E%3C/svg%3E">
+          <figcaption>.rounded-img</figcaption>
+        </figure>
+        <figure>
+          <img
+            class="circle-img"
+            style="width: 140px; height: 140px;"
+            alt="Neutral placeholder, circular"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23eeeeee'/%3E%3Ccircle cx='150' cy='120' r='50' fill='%23d8d8d8'/%3E%3Cpath d='M50 300 150 190l50 50 40-40 60 100z' fill='%23cccccc'/%3E%3C/svg%3E">
+          <figcaption>.circle-img</figcaption>
+        </figure>
+      </div>
+      <pre><code>&lt;img class="rounded-img" src="docs/assets/example.jpg" alt="Example image"&gt;
+&lt;img class="circle-img" src="docs/assets/avatar.jpg" alt="Example avatar"&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="fit">
+      <h2 id="fit">Fit</h2>
+      <p>Use fit utilities to make an image fill a fixed-size or <code>.aspect-ratio-*</code> container, either cropping or letterboxing it.</p>
+      <div class="doc-example doc-image-row">
+        <figure>
+          <div style="width: 200px; height: 140px; background: #333333;">
+            <img
+              class="img-cover"
+              alt="Neutral placeholder, cover fit"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect width='600' height='200' fill='%23eeeeee'/%3E%3Cpath d='M0 200 200 100l100 100z' fill='%23cccccc'/%3E%3C/svg%3E">
+          </div>
+          <figcaption>.img-cover<br>(crops to fill)</figcaption>
+        </figure>
+        <figure>
+          <div style="width: 200px; height: 140px; background: #333333;">
+            <img
+              class="img-contain"
+              alt="Neutral placeholder, contain fit"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200' viewBox='0 0 600 200'%3E%3Crect width='600' height='200' fill='%23eeeeee'/%3E%3Cpath d='M0 200 200 100l100 100z' fill='%23cccccc'/%3E%3C/svg%3E">
+          </div>
+          <figcaption>.img-contain<br>(letterboxed, no crop)</figcaption>
+        </figure>
+      </div>
+      <pre><code>&lt;div class="aspect-ratio-16x9"&gt;
+  &lt;img class="img-cover" src="docs/assets/example.jpg" alt="Example image"&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="filter">
+      <h2 id="filter">Filter</h2>
+      <p>Use the grayscale filter for a subtle hover effect, common in team or logo grids. Hover the image to see it.</p>
+      <div class="doc-example doc-image-row">
+        <figure>
+          <img
+            class="img-grayscale"
+            alt="Neutral placeholder, grayscale on load, color on hover"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect width='400' height='220' fill='%23e8b4b4'/%3E%3Cpath d='M0 220 130 90l72 72 52-52 146 110z' fill='%2379c27a'/%3E%3Ccircle cx='302' cy='66' r='30' fill='%234f8fd1'/%3E%3C/svg%3E">
+          <figcaption>.img-grayscale<br>(hover to see color)</figcaption>
+        </figure>
+      </div>
+      <pre><code>&lt;img class="img-grayscale" src="docs/assets/example.jpg" alt="Example image"&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="zoom">
+      <h2 id="zoom">Zoom</h2>
+      <p>Wrap an image in <code>.img-zoom-wrap</code> to smoothly zoom it in on hover, without overflowing its container. Hover the image to see it.</p>
+      <div class="doc-example doc-image-row">
+        <figure>
+          <a class="img-zoom-wrap" href="#" style="width: 200px; height: 140px;">
+            <img
+              alt="Neutral placeholder, zooms in on hover"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect width='400' height='220' fill='%23eeeeee'/%3E%3Cpath d='M0 220 130 90l72 72 52-52 146 110z' fill='%23cccccc'/%3E%3Ccircle cx='302' cy='66' r='30' fill='%23d8d8d8'/%3E%3C/svg%3E">
+          </a>
+          <figcaption>.img-zoom-wrap</figcaption>
+        </figure>
+      </div>
+      <pre><code>&lt;a class="img-zoom-wrap" href="#"&gt;
+  &lt;img src="docs/assets/example.jpg" alt="Example image"&gt;
+&lt;/a&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="caption">
+      <h2 id="caption">Caption</h2>
+      <p>Wrap an image and a <code>.img-caption</code> element in <code>.img-caption-wrap</code> to overlay a caption at the bottom of the image.</p>
+      <div class="doc-example doc-image-row">
+        <figure>
+          <div class="img-caption-wrap" style="width: 240px;">
+            <img
+              alt="Neutral placeholder with overlaid caption"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'%3E%3Crect width='400' height='260' fill='%23eeeeee'/%3E%3Cpath d='M0 260 130 130l72 72 52-52 146 110z' fill='%23cccccc'/%3E%3Ccircle cx='302' cy='86' r='30' fill='%23d8d8d8'/%3E%3C/svg%3E"
+              style="display: block; width: 100%;">
+            <p class="img-caption">Photo caption goes here</p>
+          </div>
+          <figcaption>.img-caption-wrap / .img-caption</figcaption>
+        </figure>
+      </div>
+      <pre><code>&lt;div class="img-caption-wrap"&gt;
+  &lt;img src="docs/assets/example.jpg" alt="Example image"&gt;
+  &lt;p class="img-caption"&gt;Photo caption goes here&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>

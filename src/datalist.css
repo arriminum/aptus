@@ -1,0 +1,114 @@
+
+/* TABLE ----- */
+
+.datalist-table {
+  border-collapse: collapse;
+  background-clip: padding-box;
+  font-size: var(--font-size-datalist);
+  width: 100%;
+}
+.datalist-table th {
+  padding: 12px 8px;
+  background: var(--datalist-head-bg, #f2f2f2);
+  color: var(--datalist-head-color, #393939);
+  font-weight: var(--font-weight-strong, 600);
+  text-align: left;
+}
+.datalist-table thead th:first-child {
+  border-top-left-radius: var(--datalist-head-radius, 6px);
+}
+.datalist-table thead th:last-child {
+  border-top-right-radius: var(--datalist-head-radius, 6px);
+}
+.datalist-table td {
+  color: var(--datalist-text-color, #434344);
+  padding: 10px 8px;
+}
+.datalist-table tbody tr:hover {
+  background-color: var(--datalist-row-hover-bg, #eef2f6);
+  transition: color 0.15s, background-color 0.15s;
+  cursor: pointer;
+}
+.datalist-table.datalist-no-hover :where(tbody tr):hover {
+  background-color: transparent;
+  cursor: default;
+}
+.datalist-row-alt {
+  background-color: var(--datalist-row-alt-bg, #f4fafa);
+}
+.datalist-empty {
+  background-color: var(--datalist-empty-bg, #cdeb8b);
+  color: var(--datalist-empty-color, #36393d);
+  font-size: var(--font-size-datalist);
+  text-align: center;
+  padding: 4px 0;
+}
+
+
+
+/* ROW ACTIONS ----- */
+
+.datalist-action-link {
+  display: block;
+  color: var(--datalist-action-color, #507e9f);
+  font-weight: var(--font-weight-def, 400);
+  text-decoration: underline;
+}
+.datalist-action-link:hover {
+  color: var(--datalist-action-hover-color, #3b5998);
+}
+.datalist-action-link i {
+  margin-right: 3px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+
+/* SUMMARY AND PAGER ----- */
+
+.datalist-summary {
+  margin-top: 10px;
+  color: var(--datalist-summary-color, #818181);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.datalist-pager {
+  list-style-type: none;
+  display: flex;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+.datalist-pager li {
+  margin: 0;
+}
+.datalist-pager a {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid var(--datalist-pager-border, #f0f0f0);
+  border-radius: 4px;
+  background-color: var(--datalist-pager-bg, #f1f1f1);
+  color: var(--datalist-pager-color, #4285f4);
+  font-weight: 600;
+  font-size: 11px;
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+}
+.datalist-pager a:hover {
+  background-color: var(--datalist-pager-hover-bg, #4285f4);
+  color: var(--datalist-pager-hover-color, #ffffff);
+}
+.datalist-pager-current {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid var(--datalist-pager-current-border, #e8e8e8);
+  border-radius: 4px;
+  background-color: var(--datalist-pager-current-bg, #e9e9e9);
+  color: var(--datalist-pager-current-color, #959595);
+  font-weight: 600;
+  font-size: 11px;
+}
