@@ -1,0 +1,91 @@
+
+.breadcrumb {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: var(--font-size-small);
+  width: 100%;
+}
+
+.breadcrumb ol {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  list-style: none;
+  white-space: nowrap;
+  min-width: 0;
+  gap: 6px 4px;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb li {
+  display: none;
+  align-items: center;
+  color: var(--text-muted-color, #667);
+  min-width: 0;
+}
+
+.breadcrumb li:nth-last-child(-n + 2) {
+  display: flex;
+}
+
+.breadcrumb li + li::before {
+  content: "";
+  flex: 0 0 auto;
+  display: inline-block;
+  margin-right: 10px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  color: var(--text-muted-color, #667);
+  transform: rotate(45deg);
+  height: 6px;
+  width: 6px;
+}
+
+.breadcrumb li:nth-last-child(2) {
+  flex: 0 0 auto;
+}
+
+.breadcrumb li:last-child {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.breadcrumb a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus {
+  text-decoration: underline;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--text-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .breadcrumb ol {
+    flex-wrap: wrap;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .breadcrumb li {
+    display: flex;
+  }
+
+  .breadcrumb li:nth-last-child(2)::before {
+    display: inline-block;
+  }
+
+  .breadcrumb li:last-child {
+    text-overflow: clip;
+    white-space: normal;
+    overflow: visible;
+  }
+}

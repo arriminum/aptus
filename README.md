@@ -11,8 +11,8 @@ It descends from the earlier `rimini.css` library and was renamed **Aptus** to b
 - Reset and normalization for consistent cross-browser rendering.
 - A simple row/column grid (`.g-row`, `.col1`–`.col12`).
 - Reusable utility classes for spacing, alignment, display, and visibility.
-- Common UI patterns: buttons, message bars, status badges, spinners, fade effects.
-- Responsive image helpers and small visual treatments (shadows, polaroid frames).
+- Common UI patterns: buttons, message bars, breadcrumbs, eyebrow labels, status badges, spinners, and fade effects.
+- Responsive image helpers and small visual treatments such as shadows, rounded images, captions, and hover effects.
 - No dependency on Bootstrap, Tailwind, or any other CSS framework.
 
 Aptus does not aim to replace a full framework. It exists to avoid re-implementing the same structures on every project, leaving each site to define only its own visual identity, unique components, and page-specific adjustments.
@@ -22,9 +22,9 @@ Aptus does not aim to replace a full framework. It exists to avoid re-implementi
 Aptus is distributed as compiled CSS, not as a package on a public registry. Consuming projects should link the built files rather than importing files from `src/` directly.
 
 ```html
-<link rel="stylesheet" href="/lib/css/aptus/2.1.3/reset.min.css">
-<link rel="stylesheet" href="/lib/css/aptus/2.1.3/grid.min.css">
-<link rel="stylesheet" href="/lib/css/aptus/2.1.3/commons.min.css">
+<link rel="stylesheet" href="/lib/css/aptus/3.0.0/reset.min.css">
+<link rel="stylesheet" href="/lib/css/aptus/3.0.0/grid.min.css">
+<link rel="stylesheet" href="/lib/css/aptus/3.0.0/commons.min.css">
 ```
 
 Each module is built and minified separately, so a project can include only the modules it needs. See [docs/requirements.md](docs/requirements.md) for the full list of modules and how they are built.

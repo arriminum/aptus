@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus Breadcrumb CSS</title>
+  <link rel="stylesheet" href="../../src/breadcrumb.css">
+  <style>
+    :root {
+      --font-size-small: 0.875rem;
+      --link-color: #185abc;
+      --text-color: #242424;
+    }
+
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94rem;
+    }
+
+    .doc-example {
+      margin: 14px 0;
+      padding: 16px;
+      border: 1px solid #dddddd;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Breadcrumb CSS</h1>
+    <p>Resize the window to see the full breadcrumb become a compact two-item trail on mobile. Long current-page labels are truncated on narrow screens.</p>
+
+    <div class="doc-example">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Components</a></li>
+          <li aria-current="page">A long current page title that demonstrates mobile truncation</li>
+        </ol>
+      </nav>
+    </div>
+
+    <pre><code>&lt;nav class="breadcrumb" aria-label="Breadcrumb"&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/docs/"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+    &lt;li aria-current="page"&gt;Current page&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+  </main>
+</body>
+</html>

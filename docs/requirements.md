@@ -38,6 +38,9 @@ src/ui.css
 src/notification.css
 src/autocomplete.css
 src/gdpr.css
+src/datalist.css
+src/breadcrumb.css
+src/eyebrow.css
 src/VERSION
 src/APP_NAME
 ```
@@ -53,6 +56,9 @@ dist/ui.min.css
 dist/notification.min.css
 dist/autocomplete.min.css
 dist/gdpr.min.css
+dist/datalist.min.css
+dist/breadcrumb.min.css
+dist/eyebrow.min.css
 dist/VERSION
 dist/APP_NAME
 ```
@@ -70,7 +76,7 @@ The `res/{css,img,js}` sibling layout described under "Image resources" below is
 
 ## Version
 
-`src/VERSION` is the single source of truth for the current version, currently `2.1.3`. It is copied verbatim into `dist/VERSION` during the build. See [conventions.md](conventions.md) for the rules on when to bump it.
+`src/VERSION` is the single source of truth for the current version, currently `3.0.0`. It is copied verbatim into `dist/VERSION` during the build. See [conventions.md](conventions.md) for the rules on when to bump it.
 
 ## Testing and linting
 

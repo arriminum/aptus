@@ -1,0 +1,26 @@
+
+/* ----- EYEBROW */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  color: var(--accent-color);
+  line-height: 1;
+  gap: 6px;
+}
+
+.eyebrow-mark {
+  width: 30px;
+  height: 2px;
+  display: inline-block;
+
+  background: linear-gradient(
+    90deg,
+    var(--accent-color) 0%,
+    rgba(242, 140, 0, 0.18) 100%
+  );
+}

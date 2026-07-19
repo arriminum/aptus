@@ -27,7 +27,9 @@
       { "path": "notification.css", "output": "notification.min.css" },
       { "path": "autocomplete.css", "output": "autocomplete.min.css" },
       { "path": "gdpr.css", "output": "gdpr.min.css" },
-      { "path": "datalist.css", "output": "datalist.min.css" }
+      { "path": "datalist.css", "output": "datalist.min.css" },
+      { "path": "breadcrumb.css", "output": "breadcrumb.min.css" },
+      { "path": "eyebrow.css", "output": "eyebrow.min.css" }
     ]
   }
 }

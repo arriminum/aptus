@@ -53,8 +53,7 @@
       "pranaygp.vscode-css-peek",
       "zignd.html-css-class-completion",
       "christian-kohler.path-intellisense",
-      "usernamehw.errorlens",
-      "ritwickdey.LiveServer"
+      "usernamehw.errorlens"
     ]
   }
 }

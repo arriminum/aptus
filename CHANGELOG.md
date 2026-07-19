@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 This changelog starts tracking changes from `2.1.3` onward. Changes prior to that version were not recorded here.
 
+## [3.0.0] - 2026-07-19
+
+### Added
+
+- New module `breadcrumb.css` with a responsive `.breadcrumb` component that shows the last two items on mobile and the full trail from `768px` upward. (minor)
+- New module `eyebrow.css` with `.eyebrow` and `.eyebrow-mark` for compact section labels with an optional decorative mark. (minor)
+- `commons.css`: `.res-center-aligned` for centering text only at mobile widths (`max-width: 767.98px`). (minor)
+- `image.css`: `.elevated-shadow` for a stronger, more elevated drop shadow. (minor)
+- `image.css`: `.contained-shadow` for a tighter, closer drop shadow. (minor)
+- `image.css`: `.framed-shadow` for a subtle border combined with a light shadow. (minor)
+- `docs/examples/image.html`: added examples for `.elevated-shadow`, `.contained-shadow`, and `.framed-shadow`. (minor)
+- Runnable examples and usage documentation for the breadcrumb and eyebrow modules. (minor)
+
+### Changed
+
+- `image.css`: redesigned `.subtle-shadow`, `.light-shadow`, and `.base-shadow` with a new layered shadow scale, visibly changing their existing rendering. (major)
+- `grid.css`: `.g-row.gutter` now only spaces columns from each other, leaving the first column's left edge and the last column's right edge flush with the surrounding container. The row's negative side margins were removed (no longer needed since the edge columns have no outer padding to compensate for), which also prevents gutter rows from overflowing their container. (patch)
+- `rpack.json`: added `breadcrumb.css` and `eyebrow.css` to the generated module list. (minor)
+
 ## [2.8.0] - 2026-07-15
 
 ### Added

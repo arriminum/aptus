@@ -18,10 +18,10 @@ Applies `box-sizing: border-box`, removes default margin/padding on `html`/`body
 ```
 
 - `.g-row` — row container; clears its floated columns.
-- `.col1` … `.col12` — column widths on a 12-column grid. Columns stack full-width by default and take their fractional width from `min-width: 800px` upward.
-- `.g-row.gutter` — above `min-width: 800px`, adds horizontal spacing between the row's columns instead of having them sit flush against each other.
-- `.col-offset1` … `.col-offset11` — used on a column above `min-width: 800px` to push it right by that many columns of empty space, without needing an empty placeholder column.
-- `.g-row.flex-align` — above `min-width: 800px`, switches the row to `display: flex; align-items: center` instead of floats.
+- `.col1` … `.col12` — column widths on a 12-column grid. Columns stack full-width by default and take their fractional width from `min-width: 768px` upward.
+- `.g-row.gutter` — from `min-width: 768px`, adds horizontal spacing between columns while keeping the row's outer edges flush with its container.
+- `.col-offset1` … `.col-offset11` — used on a column from `min-width: 768px` to push it right by that many columns of empty space, without needing an empty placeholder column.
+- `.g-row.flex-align` — from `min-width: 768px`, switches the row to `display: flex; align-items: center` instead of floats.
 - `.align-top`, `.align-middle`, `.align-bottom` — used on a column inside `.g-row.flex-align` to set `align-self`.
 
 See [docs/examples/grid.html](examples/grid.html) for runnable examples of equal and unequal columns, gutters, offsets, and flex alignment.
@@ -36,7 +36,8 @@ See [docs/examples/grid.html](examples/grid.html) for runnable examples of equal
 
 - `.fixed`, `.absolute` — `position` shortcuts.
 - `.left-aligned`, `.right-aligned`, `.center-aligned` — `text-align` shortcuts.
-- `.res-left-aligned`, `.res-right-aligned` — center text below `min-width: 800px`, then align left/right at and above it.
+- `.res-center-aligned` — centers text only at `max-width: 767.98px`.
+- `.res-left-aligned`, `.res-right-aligned` — center text below `min-width: 768px`, then align left/right at and above it.
 
 ### Display
 
@@ -104,6 +105,9 @@ Fixed-position button, hidden by default (`display: none`); a consuming project'
 - `.light-shadow` — default soft drop shadow, even on all sides.
 - `.subtle-shadow` — lighter drop shadow than `.light-shadow`, for a barely-there lift.
 - `.base-shadow` — drop shadow offset toward the bottom, for a "resting on a surface" effect.
+- `.elevated-shadow` — stronger shadow for high-elevation surfaces.
+- `.contained-shadow` — compact shadow that stays visually close to the element.
+- `.framed-shadow` — subtle border combined with a very light shadow.
 - `.rounded-img` — rounded corners.
 - `.circle-img` — fully circular image (requires a square image or container).
 - `.img-cover` — fills its container using `object-fit: cover`; pair with a fixed-size or `.aspect-ratio-*` container.
@@ -111,6 +115,35 @@ Fixed-position button, hidden by default (`display: none`); a consuming project'
 - `.img-grayscale` — grayscale by default, full color on hover.
 - `.img-zoom-wrap` — wrapper that clips and smoothly zooms its child `<img>` on hover.
 - `.img-caption-wrap` / `.img-caption` — overlays a caption with a dark gradient at the bottom of the image; wrap the image and a `.img-caption` element in `.img-caption-wrap`.
+
+## Breadcrumb (`breadcrumb.css`)
+
+```html
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/guides/">Guides</a></li>
+    <li aria-current="page">Current page</li>
+  </ol>
+</nav>
+```
+
+The component shows only the final two items on mobile and the full, wrapping trail from `min-width: 768px`. The final item truncates with an ellipsis on narrow screens. Customize it with `--font-size-small`, `--link-color`, `--text-muted-color`, and `--text-color`.
+
+See [docs/examples/breadcrumb.html](examples/breadcrumb.html) for a runnable example.
+
+## Eyebrow (`eyebrow.css`)
+
+```html
+<div class="eyebrow">
+  <span class="eyebrow-mark" aria-hidden="true"></span>
+  Featured
+</div>
+```
+
+`.eyebrow` creates an uppercase section label using `--font-size-small`, `--font-weight-bold`, and `--accent-color`. Add the optional `.eyebrow-mark` child for the short gradient rule.
+
+See [docs/examples/eyebrow.html](examples/eyebrow.html) for a runnable example.
 
 ## UI (`ui.css`)
 
