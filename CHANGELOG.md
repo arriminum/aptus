@@ -8,6 +8,8 @@ This changelog starts tracking changes from `2.1.3` onward. Changes prior to tha
 
 ## Unreleased
 
+## [3.0.1] - 2026-07-22
+
 ### Fixed
 
 - `datalist.css`: render `--datalist-table-border` separators on body cells so borders between rows remain visible when the table uses the separate border model. (patch)
