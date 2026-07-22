@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 This changelog starts tracking changes from `2.1.3` onward. Changes prior to that version were not recorded here.
 
+## Unreleased
+
+### Fixed
+
+- `datalist.css`: render `--datalist-table-border` separators on body cells so borders between rows remain visible when the table uses the separate border model. (patch)
+
 ## [3.0.0] - 2026-07-19
 
 ### Added

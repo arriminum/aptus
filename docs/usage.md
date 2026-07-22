@@ -313,7 +313,7 @@ Styling for a table of data fetched from a service: header, hoverable rows, row 
 </div>
 ```
 
-- `.datalist-table` — the table itself; rows highlight on hover by default.
+- `.datalist-table` — the table itself; rows highlight on hover by default. Set `--datalist-table-border` to a complete border value (for example, `1px solid #dddddd`) to add an outer border and separators between body rows.
 - `.datalist-no-hover` — add to `.datalist-table` to disable the row hover highlight, for non-clickable rows.
 - `.datalist-row-alt` — zebra-striping modifier for a `<tr>`.
 - `.datalist-action-link` — inline command/link inside a cell (edit, delete, etc.).

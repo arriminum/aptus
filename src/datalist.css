@@ -2,13 +2,19 @@
 /* TABLE ----- */
 
 .datalist-table {
-  border-collapse: collapse;
-  background-clip: padding-box;
+  border-spacing: 0;
+  border-collapse: separate;
+  border: var(--datalist-table-border, 0);
   font-size: var(--font-size-datalist);
+  border-radius:
+    var(--datalist-head-radius, 0)
+    var(--datalist-head-radius, 0)
+    0 0;
+  overflow: hidden;
   width: 100%;
 }
 .datalist-table th {
-  padding: 12px 8px;
+  padding: 12px 12px;
   background: var(--datalist-head-bg, #f2f2f2);
   color: var(--datalist-head-color, #393939);
   font-weight: var(--font-weight-strong, 600);
@@ -22,7 +28,16 @@
 }
 .datalist-table td {
   color: var(--datalist-text-color, #434344);
-  padding: 10px 8px;
+  padding: 10px 12px;
+}
+.datalist-table tbody tr {
+  background-color: var(--datalist-row-bg, #ffffff);
+}
+.datalist-table tbody td {
+  border-bottom: var(--datalist-table-border, 0);
+}
+.datalist-table tr:last-child > td {
+  border-bottom: 0;
 }
 .datalist-table tbody tr:hover {
   background-color: var(--datalist-row-hover-bg, #eef2f6);
@@ -30,7 +45,7 @@
   cursor: pointer;
 }
 .datalist-table.datalist-no-hover :where(tbody tr):hover {
-  background-color: transparent;
+  background-color: var(--datalist-row-bg, #ffffff);
   cursor: default;
 }
 .datalist-row-alt {
@@ -70,9 +85,10 @@
 .datalist-summary {
   margin-top: 10px;
   color: var(--datalist-summary-color, #818181);
-  display: flex;
-  align-items: center;
+  font-size: var(--font-size-datalist);
   justify-content: space-between;
+  align-items: center;
+  display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
