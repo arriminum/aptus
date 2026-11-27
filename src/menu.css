@@ -1,0 +1,413 @@
+/*
+ * Aptus menu — action menu ("⋯") opened from a .ui-menu-trigger button.
+ * On desktop the menu is a fixed-position popover placed by JS (top/left inline, data-placement);
+ * with .ui-menu-sheet it becomes a bottom sheet over a .ui-menu-backdrop.
+ * Theme through --ui-menu-* custom properties (set them on :root or on the menu); every one has a fallback.
+ */
+
+
+
+/* TRIGGER ----- */
+
+.ui-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ui-menu-trigger-text, var(--color-text, #1f2933));
+  background: transparent;
+  border: 1px solid var(--ui-menu-trigger-border, rgba(15, 23, 42, 0.14));
+  border-radius: var(--ui-menu-radius, 8px);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ui-menu-trigger-plain {
+  border-color: transparent;
+}
+
+.ui-menu-trigger:hover,
+.ui-menu-trigger[aria-expanded="true"] {
+  background-color: var(--ui-menu-hover, rgba(15, 23, 42, 0.06));
+}
+
+.ui-menu-trigger[aria-expanded="true"] {
+  border-color: var(--ui-menu-trigger-border-active, rgba(15, 23, 42, 0.24));
+}
+
+.ui-menu-trigger:focus-visible {
+  outline: 2px solid var(--ui-menu-focus, #2563eb);
+  outline-offset: 2px;
+}
+
+
+
+/* MENU ----- */
+
+.ui-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--ui-menu-z, 1000);
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: min(320px, calc(100vw - 16px));
+  max-height: calc(100vh - 16px);
+  margin: 0;
+  padding: var(--ui-menu-padding, 6px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  font-size: var(--ui-menu-font-size, 0.875rem);
+  line-height: 1.4;
+  text-align: start;
+  color: var(--ui-menu-text, var(--color-text, #1f2933));
+  background: var(--ui-menu-bg, var(--color-surface, #fff));
+  border: 1px solid var(--ui-menu-border, rgba(15, 23, 42, 0.08));
+  border-radius: var(--ui-menu-radius, 8px);
+  box-shadow: var(
+    --ui-menu-shadow,
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 4px 8px -2px rgba(15, 23, 42, 0.08),
+    0 16px 32px -8px rgba(15, 23, 42, 0.16)
+  );
+
+  /* Default placement is bottom-end: grows from the trigger's bottom-right corner */
+  --ui-menu-shift: -4px;
+  transform-origin: top right;
+}
+
+/* The class sets display, so the hidden attribute needs to win back explicitly */
+.ui-menu[hidden] {
+  display: none;
+}
+
+/* Rows never shrink: the menu scrolls instead */
+.ui-menu > * {
+  flex-shrink: 0;
+}
+
+.ui-menu[data-placement="bottom-start"] {
+  transform-origin: top left;
+}
+
+.ui-menu[data-placement="top-end"] {
+  --ui-menu-shift: 4px;
+  transform-origin: bottom right;
+}
+
+.ui-menu[data-placement="top-start"] {
+  --ui-menu-shift: 4px;
+  transform-origin: bottom left;
+}
+
+@supports (height: 100dvh) {
+  .ui-menu {
+    max-height: calc(100dvh - 16px);
+  }
+}
+
+
+
+/* ITEMS ----- */
+
+/* Same look for <a> and <button> */
+.ui-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 36px;
+  margin: 0;
+  padding: 8px 10px;
+  font: inherit;
+  line-height: 1.3;
+  color: inherit;
+  text-align: start;
+  text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: none;
+  border: 0;
+  border-radius: calc(var(--ui-menu-radius, 8px) - 2px);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fixed-width icon slot, so item texts line up */
+.ui-menu-item > i,
+.ui-menu-item > svg,
+.ui-menu-item > .ui-menu-icon {
+  flex: 0 0 16px;
+  width: 16px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--ui-menu-muted, #5b6675);
+}
+
+/* Pseudo-classes keep links from picking up page-level a:hover / a:visited styles */
+.ui-menu-item:link,
+.ui-menu-item:visited,
+.ui-menu-item:hover,
+.ui-menu-item:focus {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ui-menu-item:focus {
+  outline: none;
+}
+
+.ui-menu-item:hover,
+.ui-menu-item:focus {
+  background-color: var(--ui-menu-hover, rgba(15, 23, 42, 0.06));
+}
+
+/* Keyboard focus is marked by an outline, not only by the background color */
+.ui-menu-item:focus-visible {
+  outline: 2px solid var(--ui-menu-focus, #2563eb);
+  outline-offset: -2px;
+}
+
+.ui-menu-item[aria-disabled="true"],
+.ui-menu-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ui-menu-item[aria-disabled="true"]:hover,
+.ui-menu-item:disabled:hover {
+  background-color: transparent;
+}
+
+.ui-menu-item-danger,
+.ui-menu-item-danger:link,
+.ui-menu-item-danger:visited,
+.ui-menu-item-danger > i,
+.ui-menu-item-danger > svg,
+.ui-menu-item-danger > .ui-menu-icon {
+  color: var(--ui-menu-danger, #c62828);
+}
+
+.ui-menu-item-danger:hover,
+.ui-menu-item-danger:focus {
+  color: var(--ui-menu-danger-strong, #b71c1c);
+  background-color: var(--ui-menu-danger-hover, #fdecec);
+}
+
+
+
+/* SEPARATOR, LABEL AND TITLE ----- */
+
+/* Spans the full menu width, through the menu padding */
+.ui-menu-sep {
+  height: 1px;
+  margin: 6px calc(-1 * var(--ui-menu-padding, 6px));
+  padding: 0;
+  background: var(--ui-menu-border, rgba(15, 23, 42, 0.08));
+  border: 0;
+}
+
+.ui-menu-label {
+  padding: 8px 10px 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ui-menu-muted, #5b6675);
+}
+
+/* Sheet header (e.g. the record name); only shown in sheet mode */
+.ui-menu-title {
+  padding: 4px 14px 10px;
+  font-weight: 600;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* "Cancel" row; only shown in sheet mode, so server-rendered menus can always include it */
+.ui-menu-cancel {
+  justify-content: center;
+  margin-top: 8px;
+  font-weight: 600;
+  background-color: var(--ui-menu-cancel-bg, rgba(15, 23, 42, 0.05));
+}
+
+.ui-menu-cancel:hover,
+.ui-menu-cancel:focus {
+  background-color: var(--ui-menu-cancel-hover, rgba(15, 23, 42, 0.1));
+}
+
+.ui-menu:not(.ui-menu-sheet) .ui-menu-title,
+.ui-menu:not(.ui-menu-sheet) .ui-menu-cancel {
+  display: none;
+}
+
+
+
+/* SHEET ----- */
+
+/* The JS must not set top/left inline while the menu is in sheet mode; two classes so data-placement never wins */
+.ui-menu.ui-menu-sheet {
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  max-height: 85vh;
+  padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  font-size: 1rem;
+  border-width: 1px 0 0;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.16);
+  transform-origin: bottom center;
+}
+
+@supports (height: 100dvh) {
+  .ui-menu.ui-menu-sheet {
+    max-height: 85dvh;
+  }
+}
+
+/* Decorative drag handle */
+.ui-menu-sheet::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 36px;
+  height: 4px;
+  margin: 0 auto 10px;
+  background: var(--ui-menu-handle, rgba(15, 23, 42, 0.2));
+  border-radius: 2px;
+}
+
+.ui-menu-sheet .ui-menu-item {
+  min-height: 48px;
+  padding: 12px 14px;
+  gap: 14px;
+  border-radius: 10px;
+}
+
+.ui-menu-sheet .ui-menu-item > i,
+.ui-menu-sheet .ui-menu-item > svg,
+.ui-menu-sheet .ui-menu-item > .ui-menu-icon {
+  flex-basis: 20px;
+  width: 20px;
+  font-size: 16px;
+}
+
+.ui-menu-sheet .ui-menu-sep {
+  margin: 4px -8px;
+}
+
+.ui-menu-sheet .ui-menu-label {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+
+
+/* BACKDROP ----- */
+
+.ui-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--ui-menu-z, 1000) - 1);
+  background: var(--ui-menu-backdrop, rgba(15, 23, 42, 0.45));
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ui-menu-backdrop[hidden] {
+  display: none;
+}
+
+
+
+/* ANIMATION ----- */
+
+/*
+ * Entry runs from @starting-style when the hidden attribute is removed;
+ * exit: add .is-closing, wait for transitionend (with a timeout fallback), then set hidden.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .ui-menu {
+    transition: opacity 0.14s ease, transform 0.14s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .ui-menu-sheet {
+    transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .ui-menu-backdrop {
+    transition: opacity 0.2s ease;
+  }
+
+  .ui-menu-trigger,
+  .ui-menu-item {
+    transition: background-color 0.12s ease, color 0.12s ease;
+  }
+
+  .ui-menu.is-closing {
+    opacity: 0;
+    transform: translateY(var(--ui-menu-shift)) scale(0.98);
+  }
+
+  .ui-menu-sheet.is-closing {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+
+  .ui-menu-backdrop.is-closing {
+    opacity: 0;
+  }
+
+  @starting-style {
+    .ui-menu:not([hidden]) {
+      opacity: 0;
+      transform: translateY(var(--ui-menu-shift)) scale(0.98);
+    }
+
+    .ui-menu-sheet:not([hidden]) {
+      opacity: 1;
+      transform: translateY(100%);
+    }
+
+    .ui-menu-backdrop:not([hidden]) {
+      opacity: 0;
+    }
+  }
+}
+
+
+
+/* MOBILE ----- */
+
+@media (max-width: 767.98px) {
+  .ui-menu-trigger {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ui-menu-item {
+    min-height: 48px;
+  }
+}

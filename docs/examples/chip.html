@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus Chip CSS</title>
+  <link rel="stylesheet" href="../../src/chip.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 36px 0 12px;
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    .demo-panel {
+      padding: 16px;
+      background: #ffffff;
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+    }
+
+    .demo-search {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 12px;
+    }
+
+    .demo-search input {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 8px 10px;
+      font-size: 16px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+    }
+
+    .demo-search button,
+    .demo-buttons button {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      font: inherit;
+      background: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .demo-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Chip CSS</h1>
+    <p>Active filters shown as removable chips below a search field, plus <code>.ui-count</code>, a numeric badge for buttons. Click a chip's × to remove it; the counter follows. The remove button is 20px but has an invisible 32px touch target.</p>
+
+    <h2>Active filters</h2>
+    <div class="demo-panel">
+      <div class="demo-search">
+        <input type="search" aria-label="Search" placeholder="Search contacts">
+        <button type="button">Filters <span class="ui-count" id="count"></span></button>
+      </div>
+
+      <ul class="ui-chip-list" id="chips" aria-label="Active filters">
+        <li class="ui-chip">
+          <span class="ui-chip-text"><span class="ui-chip-key">Stage:</span> Lead</span>
+          <button type="button" class="ui-chip-remove" aria-label="Remove filter Stage: Lead">×</button>
+        </li>
+        <li class="ui-chip">
+          <span class="ui-chip-text"><span class="ui-chip-key">City:</span> São Paulo</span>
+          <button type="button" class="ui-chip-remove" aria-label="Remove filter City: São Paulo">×</button>
+        </li>
+        <li class="ui-chip">
+          <span class="ui-chip-text"><span class="ui-chip-key">Owner:</span> A very long owner name that will be truncated with an ellipsis at narrow widths</span>
+          <button type="button" class="ui-chip-remove" aria-label="Remove filter Owner">×</button>
+        </li>
+        <li><button type="button" class="ui-chip-clear" id="clear">Clear all</button></li>
+      </ul>
+    </div>
+
+    <h2>Chip without a remove button</h2>
+    <div class="demo-panel">
+      <ul class="ui-chip-list" aria-label="Tags">
+        <li class="ui-chip"><span class="ui-chip-text">Read only</span></li>
+        <li class="ui-chip"><span class="ui-chip-text"><span class="ui-chip-key">Source:</span> Website</span></li>
+      </ul>
+    </div>
+
+    <h2>Counter</h2>
+    <p>Hidden while empty: the second button has an empty <code>.ui-count</code>.</p>
+    <div class="demo-buttons">
+      <button type="button">Filters <span class="ui-count">2</span></button>
+      <button type="button">Filters <span class="ui-count"></span></button>
+      <button type="button">Inbox <span class="ui-count">128</span></button>
+    </div>
+
+    <h2>Markup</h2>
+    <pre><code>&lt;button type="button"&gt;Filters &lt;span class="ui-count"&gt;2&lt;/span&gt;&lt;/button&gt;
+
+&lt;ul class="ui-chip-list" aria-label="Active filters"&gt;
+  &lt;li class="ui-chip"&gt;
+    &lt;span class="ui-chip-text"&gt;&lt;span class="ui-chip-key"&gt;Stage:&lt;/span&gt; Lead&lt;/span&gt;
+    &lt;button type="button" class="ui-chip-remove" aria-label="Remove filter Stage: Lead"&gt;&lt;i class="fa-solid fa-xmark" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;button type="button" class="ui-chip-clear"&gt;Clear all&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </main>
+
+  <script>
+    // Demo only: in production the chips are rendered by Palatium's FilterForm.
+    const list = document.getElementById('chips');
+    const count = document.getElementById('count');
+
+    function update() {
+      const n = list.querySelectorAll('.ui-chip').length;
+      count.textContent = n ? String(n) : '';
+      const clear = document.getElementById('clear');
+      if (clear) clear.parentElement.hidden = n === 0;
+    }
+
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('.ui-chip-remove')) e.target.closest('.ui-chip').remove();
+      if (e.target.closest('.ui-chip-clear')) list.querySelectorAll('.ui-chip').forEach((chip) => chip.remove());
+      update();
+    });
+
+    update();
+  </script>
+</body>
+</html>

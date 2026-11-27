@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aptus Datalist CSS — Row list</title>
+  <link rel="stylesheet" href="../../src/datalist.css">
+  <style>
+    body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+    section {
+      padding: 18px 0;
+    }
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+    h1 {
+      margin: 0 0 24px;
+    }
+    h2 {
+      margin: 0 0 8px;
+    }
+    p {
+      margin: 0 0 14px;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #dedede;
+      margin: 18px 0;
+    }
+    table.slots {
+      border-collapse: collapse;
+      background: #ffffff;
+      margin: 14px 0;
+    }
+    table.slots th,
+    table.slots td {
+      border: 1px solid #dddddd;
+      padding: 6px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94rem;
+    }
+    .doc-example {
+      margin: 14px 0;
+      background: #ffffff;
+      border: 1px solid #dddddd;
+    }
+    @media (max-width: 767.98px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      h1, h2, p, pre, table.slots {
+        margin-left: 16px;
+        margin-right: 16px;
+      }
+      .doc-example {
+        border-left: 0;
+        border-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Datalist CSS — Row list</h1>
+    <p>An alternative to <code>.datalist-table</code> built from <code>ul &gt; li</code> with one real link per row. From <code>768px</code> up, cells line up in columns under a header row; below that (<code>max-width: 767.98px</code>), each row becomes a native-app list item that spans the container edge to edge. Resize the window to compare both layouts.</p>
+
+    <h2>Cell slots</h2>
+    <p>Each <code>.datalist-cell</code> gets one slot class that decides where it goes on mobile:</p>
+    <table class="slots">
+      <thead><tr><th>Class</th><th>Desktop</th><th>Mobile</th></tr></thead>
+      <tbody>
+        <tr><td><code>.datalist-title</code></td><td>column</td><td>line 1, left, bold, fills the space, truncated with ellipsis</td></tr>
+        <tr><td><code>.datalist-value</code></td><td>right-aligned column</td><td>line 1, right (before the badge)</td></tr>
+        <tr><td><code>.datalist-badge</code></td><td>column</td><td>line 1, right</td></tr>
+        <tr><td><code>.datalist-sub</code></td><td>column</td><td>line 2, all subs on one line separated by "·"</td></tr>
+        <tr><td><code>.datalist-meta</code></td><td>column</td><td>line 3, smaller and more muted</td></tr>
+        <tr><td><code>.datalist-desk</code></td><td>column</td><td>hidden</td></tr>
+      </tbody>
+    </table>
+    <p>Add <code>.is-empty</code> to an empty cell: on desktop it keeps its column, on mobile it is hidden and does not leave a stray separator.</p>
+
+    <hr>
+
+    <section aria-labelledby="simple">
+      <h2 id="simple">Simple list</h2>
+      <p>Column widths come from <code>--datalist-cols</code> on <code>.datalist</code> (any <code>grid-template-columns</code> value). <code>.datalist-head</code> and every <code>.datalist-link</code> share that grid. The header is visual only, so it is <code>aria-hidden</code>.</p>
+      <div class="doc-example">
+        <div class="datalist" style="--datalist-cols: 3fr 2fr 3fr 2fr">
+          <div class="datalist-head" aria-hidden="true">
+            <span>Nome</span><span>Cargo</span><span>Email</span><span>Status</span>
+          </div>
+          <ul class="datalist-list">
+            <li class="datalist-item">
+              <a class="datalist-link" href="#k=12">
+                <span class="datalist-cell datalist-title">Nina Cat</span>
+                <span class="datalist-cell datalist-sub">CEO</span>
+                <span class="datalist-cell datalist-sub">nina@example.com</span>
+                <span class="datalist-cell datalist-badge"><span class="datalist-tag">Inativo</span></span>
+              </a>
+            </li>
+            <li class="datalist-item">
+              <a class="datalist-link" href="#k=13">
+                <span class="datalist-cell datalist-title">Bartholomew Alexander Montgomery-Smithson</span>
+                <span class="datalist-cell datalist-sub is-empty"></span>
+                <span class="datalist-cell datalist-sub">bartholomew.alexander.montgomery-smithson@a-very-long-domain.example.com</span>
+                <span class="datalist-cell datalist-badge is-empty"></span>
+              </a>
+            </li>
+            <li class="datalist-item">
+              <a class="datalist-link" href="#k=14">
+                <span class="datalist-cell datalist-title">Alice Doe</span>
+                <span class="datalist-cell datalist-sub">Analyst</span>
+                <span class="datalist-cell datalist-sub is-empty"></span>
+                <span class="datalist-cell datalist-badge"><span class="datalist-tag datalist-tag-warning">Pendente</span></span>
+              </a>
+            </li>
+          </ul>
+          <div class="datalist-summary"><span>Mostrando 3 de 3</span></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="datalist" style="--datalist-cols: 3fr 2fr 3fr 2fr"&gt;
+  &lt;div class="datalist-head" aria-hidden="true"&gt;
+    &lt;span&gt;Nome&lt;/span&gt;&lt;span&gt;Cargo&lt;/span&gt;&lt;span&gt;Email&lt;/span&gt;&lt;span&gt;Status&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;ul class="datalist-list"&gt;
+    &lt;li class="datalist-item"&gt;
+      &lt;a class="datalist-link" href="/contact/?k=12"&gt;
+        &lt;span class="datalist-cell datalist-title"&gt;Nina Cat&lt;/span&gt;
+        &lt;span class="datalist-cell datalist-sub"&gt;CEO&lt;/span&gt;
+        &lt;span class="datalist-cell datalist-sub"&gt;nina@example.com&lt;/span&gt;
+        &lt;span class="datalist-cell datalist-badge"&gt;&lt;span class="datalist-tag"&gt;Inativo&lt;/span&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class="datalist-summary"&gt;&lt;span&gt;Mostrando 3 de 3&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="actions">
+      <h2 id="actions">Quick actions</h2>
+      <p><code>.datalist-actions</code> sits <strong>outside</strong> the row link (interactive elements cannot be nested), as the second area of the <code>li</code> grid. Each <code>.datalist-action</code> is a round icon button with a 40px touch target and must have an <code>aria-label</code>. Actions are always visible, on desktop and mobile, so they are discoverable by touch and keyboard. When the list contains actions the column defaults to <code>48px</code> and the header reserves the same width; set <code>--datalist-actions-w</code> for more buttons. Tab order: row link, then its actions.</p>
+      <div class="doc-example">
+        <div class="datalist" style="--datalist-cols: 3fr 2fr 3fr 2fr 1fr; --datalist-actions-w: 92px">
+          <div class="datalist-head" aria-hidden="true">
+            <span>Nome</span><span>Cargo</span><span>Email</span><span>Telefone</span><span>Status</span>
+          </div>
+          <ul class="datalist-list">
+            <li class="datalist-item">
+              <a class="datalist-link" href="#k=12">
+                <span class="datalist-cell datalist-title">Nina Cat</span>
+                <span class="datalist-cell datalist-sub">CEO</span>
+                <span class="datalist-cell datalist-sub">nina@example.com</span>
+                <span class="datalist-cell datalist-sub">(19) 98113-2743</span>
+                <span class="datalist-cell datalist-badge"><span class="datalist-tag datalist-tag-danger">Inativo</span></span>
+              </a>
+              <div class="datalist-actions">
+                <a class="datalist-action" href="tel:19981132743" aria-label="Ligar para Nina Cat"><span aria-hidden="true">☎</span></a>
+                <a class="datalist-action" href="#whatsapp" aria-label="WhatsApp para Nina Cat"><span aria-hidden="true">✉</span></a>
+              </div>
+            </li>
+            <li class="datalist-item">
+              <a class="datalist-link" href="#k=15">
+                <span class="datalist-cell datalist-title">John Smith</span>
+                <span class="datalist-cell datalist-sub">Manager</span>
+                <span class="datalist-cell datalist-sub">john@example.com</span>
+                <span class="datalist-cell datalist-sub is-empty"></span>
+                <span class="datalist-cell datalist-badge is-empty"></span>
+              </a>
+              <div class="datalist-actions"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <pre><code>&lt;li class="datalist-item"&gt;
+  &lt;a class="datalist-link" href="/contact/?k=12"&gt;…&lt;/a&gt;
+  &lt;div class="datalist-actions"&gt;
+    &lt;a class="datalist-action" href="tel:19981132743" aria-label="Ligar para Nina Cat"&gt;
+      &lt;i class="fa-solid fa-phone" aria-hidden="true"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="value">
+      <h2 id="value">Value column and meta line</h2>
+      <p><code>.datalist-value</code> is right-aligned on desktop (add the same class to its header <code>span</code> to align the label) and goes to the right of line 1 on mobile, before any badge. <code>.datalist-meta</code> becomes a smaller third line on mobile; <code>.datalist-desk</code> is hidden there.</p>
+      <div class="doc-example">
+        <div class="datalist" style="--datalist-cols: 3fr 2fr 2fr 1.5fr 1.2fr">
+          <div class="datalist-head" aria-hidden="true">
+            <span>Produto</span><span>Categoria</span><span>Atualizado</span><span>SKU</span><span class="datalist-value">Preço</span>
+          </div>
+          <ul class="datalist-list">
+            <li class="datalist-item">
+              <a class="datalist-link" href="#p=1">
+                <span class="datalist-cell datalist-title">Plano Profissional</span>
+                <span class="datalist-cell datalist-sub">Assinatura</span>
+                <span class="datalist-cell datalist-meta">Atualizado em 10/11/2026</span>
+                <span class="datalist-cell datalist-desk">PRO-001</span>
+                <span class="datalist-cell datalist-value">R$ 1.290,00</span>
+              </a>
+            </li>
+            <li class="datalist-item">
+              <a class="datalist-link" href="#p=2">
+                <span class="datalist-cell datalist-title">Consultoria avulsa</span>
+                <span class="datalist-cell datalist-sub">Serviço</span>
+                <span class="datalist-cell datalist-meta">Atualizado em 02/10/2026</span>
+                <span class="datalist-cell datalist-desk">SRV-014</span>
+                <span class="datalist-cell datalist-value">R$ 380,00</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="empty">
+      <h2 id="empty">Empty state</h2>
+      <p>Reuse <code>.datalist-empty</code> as an <code>li</code> inside <code>.datalist-list</code>; it spans the full row.</p>
+      <div class="doc-example">
+        <div class="datalist" style="--datalist-cols: 3fr 2fr 2fr">
+          <div class="datalist-head" aria-hidden="true">
+            <span>Nome</span><span>Cargo</span><span>Email</span>
+          </div>
+          <ul class="datalist-list">
+            <li class="datalist-empty">Nenhum registro encontrado.</li>
+          </ul>
+        </div>
+      </div>
+      <pre><code>&lt;ul class="datalist-list"&gt;
+  &lt;li class="datalist-empty"&gt;Nenhum registro encontrado.&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="more">
+      <h2 id="more">Load more</h2>
+      <p><code>.datalist-more</code> centers the <code>.datalist-more-btn</code> button below the list. While loading, the script sets <code>aria-busy="true"</code> on the button (a spinner appears and clicks are ignored). When there are no more items, the script removes <code>.datalist-more</code> or sets <code>hidden</code> on it.</p>
+      <div class="doc-example">
+        <div class="datalist" style="--datalist-cols: 3fr 2fr">
+          <ul class="datalist-list">
+            <li class="datalist-item">
+              <a class="datalist-link" href="#k=1">
+                <span class="datalist-cell datalist-title">Nina Cat</span>
+                <span class="datalist-cell datalist-sub">CEO</span>
+              </a>
+            </li>
+          </ul>
+          <div class="datalist-summary"><span>Mostrando 20 de 134</span></div>
+          <div class="datalist-more"><button type="button" class="datalist-more-btn">Carregar mais</button></div>
+          <div class="datalist-more"><button type="button" class="datalist-more-btn" aria-busy="true">Carregando…</button></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="datalist-summary"&gt;&lt;span&gt;Mostrando 20 de 134&lt;/span&gt;&lt;/div&gt;
+&lt;div class="datalist-more"&gt;
+  &lt;button type="button" class="datalist-more-btn"&gt;Carregar mais&lt;/button&gt;
+&lt;/div&gt;
+&lt;!-- loading: aria-busy="true" on the button; done: hidden on .datalist-more --&gt;</code></pre>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="tags">
+      <h2 id="tags">Tags</h2>
+      <p><code>.datalist-tag</code> is a neutral pill. Semantic modifiers: <code>.datalist-tag-muted</code>, <code>.datalist-tag-success</code>, <code>.datalist-tag-warning</code>, <code>.datalist-tag-danger</code>. Colors come from <code>--datalist-tag-*</code> variables.</p>
+      <p>
+        <span class="datalist-tag">Neutro</span>
+        <span class="datalist-tag datalist-tag-muted">Arquivado</span>
+        <span class="datalist-tag datalist-tag-success">Pago</span>
+        <span class="datalist-tag datalist-tag-warning">Pendente</span>
+        <span class="datalist-tag datalist-tag-danger">Inativo</span>
+      </p>
+    </section>
+
+    <hr>
+
+    <section aria-labelledby="selectable">
+      <h2 id="selectable">Selection</h2>
+      <p><code>.datalist-selectable</code> on <code>.datalist</code> turns each <code>li</code> into <code>[select] [link] [actions]</code>. The <code>label.datalist-select</code> column (width <code>--datalist-select-w</code>, default <code>44px</code>) is the touch target of the row checkbox; the header reserves the same width. Here the row body is a <code>label.datalist-link</code> pointing at the checkbox, so a click anywhere on the row toggles it (a row can also keep an <code>a.datalist-link</code> and navigate). <code>.is-selected</code> tints a selected row. The <code>.datalist-selectbar</code> sits before the rows with the "select all shown" checkbox (indeterminate while only some rows are selected), the count and the bulk actions. The checkbox states are wired by a script (Palatium <code>DataList</code> with <code>selectable</code>); here they are static.</p>
+
+      <div class="datalist datalist-selectable" style="--datalist-cols: 3fr 2fr 2fr 1fr">
+        <div class="datalist-selectbar">
+          <label class="datalist-selectbar-all"><input type="checkbox" id="demo-select-all">Select page</label>
+          <span class="datalist-selectbar-count" role="status">1 selected</span>
+          <div class="datalist-selectbar-actions">
+            <button type="button" class="datalist-more-btn">Add selected (1)</button>
+          </div>
+        </div>
+        <div class="datalist-head" aria-hidden="true">
+          <span>Company</span><span>City</span><span>Segment</span><span>Stage</span>
+        </div>
+        <ul class="datalist-list">
+          <li class="datalist-item is-selected">
+            <label class="datalist-select"><input type="checkbox" id="demo-sel-1" checked aria-label="Select Acme Ltda"></label>
+            <label class="datalist-link" for="demo-sel-1">
+              <span class="datalist-cell datalist-title">Acme Ltda</span>
+              <span class="datalist-cell datalist-sub">Campinas</span>
+              <span class="datalist-cell datalist-sub">Retail</span>
+              <span class="datalist-cell datalist-badge"><span class="datalist-tag">Lead</span></span>
+            </label>
+          </li>
+          <li class="datalist-item">
+            <label class="datalist-select"><input type="checkbox" id="demo-sel-2" aria-label="Select Beta Foods"></label>
+            <label class="datalist-link" for="demo-sel-2">
+              <span class="datalist-cell datalist-title">Beta Foods</span>
+              <span class="datalist-cell datalist-sub">Sorocaba</span>
+              <span class="datalist-cell datalist-sub is-empty"></span>
+              <span class="datalist-cell datalist-badge"><span class="datalist-tag datalist-tag-muted">Lost</span></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <script>document.getElementById('demo-select-all').indeterminate = true;</script>
+    </section>
+  </main>
+</body>
+</html>

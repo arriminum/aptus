@@ -1,0 +1,381 @@
+/*
+ * Aptus modal — structural frame for <dialog class="ui-modal"> opened with showModal().
+ * Only the frame is styled here: size, position, scrolling, header, footer, backdrop and mobile behavior.
+ * Content inside .ui-modal-body inherits the application styles.
+ */
+
+
+
+/* BASE ----- */
+
+.ui-modal {
+  --ui-modal-width: 640px;
+  --ui-modal-gap: 32px;
+  --ui-modal-padding: 30px;
+  --ui-modal-radius: 16px;
+  --ui-modal-title-size: 1em;
+  --ui-modal-title-weight: 700;
+  --ui-modal-surface: var(--color-surface, #fff);
+
+  width: min(var(--ui-modal-width), calc(100vw - var(--ui-modal-gap)));
+  max-width: none;
+  max-height: calc(100vh - var(--ui-modal-gap));
+  margin: auto;
+  padding: 0;
+
+  background: var(--ui-modal-surface);
+  color: var(--color-text, #1f2933);
+
+  /* The dialog starts its own text context, so a page-level alignment (e.g. body { text-align: center }) does not leak in */
+  text-align: start;
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--ui-modal-radius);
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.16),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.ui-modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+@supports (height: 100dvh) {
+  .ui-modal {
+    max-height: calc(100dvh - var(--ui-modal-gap));
+  }
+}
+
+
+
+/* SIZES ----- */
+
+.ui-modal-narrow {
+  --ui-modal-width: 420px;
+}
+
+.ui-modal-default {
+  --ui-modal-width: 640px;
+}
+
+.ui-modal-wide {
+  --ui-modal-width: 960px;
+}
+
+.ui-modal-full {
+  --ui-modal-width: 100vw;
+}
+
+/* Bottom sheet on mobile (see MOBILE); on desktop it is a narrow centered modal */
+.ui-modal-sheet {
+  --ui-modal-width: 420px;
+}
+
+
+
+/* HEADER ----- */
+
+/* Fixed above the scrolling body; no divider, the body's scroll shadow marks the edge only when content is hidden */
+.ui-modal-header {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 12px;
+  padding: 14px 14px 6px var(--ui-modal-padding);
+}
+
+/* Same size as the body text, bold: the frame, not the heading level, gives the title its weight */
+.ui-modal-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--ui-modal-title-size);
+  font-weight: var(--ui-modal-title-weight);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.ui-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  font: inherit;
+  font-size: 24px;
+  line-height: 1;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.ui-modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  opacity: 1;
+}
+
+.ui-modal-close:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+  opacity: 1;
+}
+
+
+
+/* BODY ----- */
+
+.ui-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 20px var(--ui-modal-padding) var(--ui-modal-padding);
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+
+  /*
+   * Scroll shadows: the two "local" covers scroll with the content and hide the two "scroll" shadows
+   * while the body is at its top/bottom edge, so a shadow only shows where content is cut off.
+   */
+  background:
+    linear-gradient(var(--ui-modal-surface) 30%, transparent) center top / 100% 32px no-repeat local,
+    linear-gradient(transparent, var(--ui-modal-surface) 70%) center bottom / 100% 32px no-repeat local,
+    linear-gradient(rgba(0, 0, 0, 0.1), transparent) center top / 100% 10px no-repeat scroll,
+    linear-gradient(transparent, rgba(0, 0, 0, 0.1)) center bottom / 100% 10px no-repeat scroll;
+}
+
+/* The body padding is the spacing: margins of the first/last content element would only add to it */
+.ui-modal-body > :first-child {
+  margin-top: 0;
+}
+
+.ui-modal-body > :last-child {
+  margin-bottom: 0;
+}
+
+
+
+/* FOOTER ----- */
+
+/* Fixed below the scrolling body, actions aligned to the right */
+.ui-modal-footer {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px var(--ui-modal-padding) var(--ui-modal-padding);
+  background-color: transparent;
+}
+
+
+
+/* BACKDROP AND PAGE ----- */
+
+.ui-modal::backdrop {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+html.ui-modal-open {
+  overflow: hidden;
+}
+
+
+
+/* STATES ----- */
+
+@keyframes ui-modal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ui-modal-body.is-loading {
+  position: relative;
+  min-height: 120px;
+}
+
+/* Same look as .el-spinner (ui.css), kept local so this module has no dependency */
+.ui-modal-body.is-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top-color: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  animation: ui-modal-spin 0.6s linear infinite;
+}
+
+.ui-modal.is-busy {
+  cursor: progress;
+}
+
+
+
+/* ANIMATION ----- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .ui-modal,
+  .ui-modal::backdrop {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .ui-modal-close {
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .ui-modal[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .ui-modal.is-closing {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  .ui-modal.is-closing::backdrop {
+    opacity: 0;
+  }
+
+  @starting-style {
+    .ui-modal[open] {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+
+    .ui-modal[open]::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-modal-body.is-loading::after {
+    animation-duration: 1.5s;
+  }
+}
+
+
+
+/* MOBILE ----- */
+
+@media (max-width: 767.98px) {
+  .ui-modal {
+    --ui-modal-padding: 20px;
+
+    width: 100%;
+    max-width: 100%;
+    max-height: 92vh;
+    margin: auto 0 0;
+    border-bottom: 0;
+    border-radius: var(--ui-modal-radius) var(--ui-modal-radius) 0 0;
+  }
+
+  .ui-modal-full {
+    height: 100vh;
+    max-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .ui-modal-header {
+    padding-top: 10px;
+    padding-right: 10px;
+  }
+
+  .ui-modal-footer {
+    padding-bottom: calc(var(--ui-modal-padding) + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* No footer: the body is the last element and must clear the safe area itself */
+  .ui-modal-body:last-child {
+    padding-bottom: calc(var(--ui-modal-padding) + env(safe-area-inset-bottom, 0px));
+  }
+
+  @supports (height: 100dvh) {
+    .ui-modal {
+      max-height: 92dvh;
+    }
+
+    .ui-modal-full {
+      height: 100dvh;
+      max-height: 100dvh;
+    }
+  }
+}
+
+
+
+/* SHEET (MOBILE) ----- */
+
+/* Additive: only dialogs with .ui-modal-sheet change; the slide-up animation is the mobile one above */
+@media (max-width: 767.98px) {
+  .ui-modal-sheet {
+    max-height: 85vh;
+  }
+
+  @supports (height: 100dvh) {
+    .ui-modal-sheet {
+      max-height: 85dvh;
+    }
+  }
+
+  /* Decorative drag handle, above the header */
+  .ui-modal-sheet::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 36px;
+    height: 4px;
+    margin: 8px auto 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+  }
+
+  .ui-modal-sheet .ui-modal-header {
+    padding-top: 2px;
+  }
+
+  /* Footer actions ("Clear" / "Apply") share the width */
+  .ui-modal-sheet .ui-modal-footer {
+    flex-wrap: nowrap;
+  }
+
+  .ui-modal-sheet .ui-modal-footer > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+
+
+@media (max-width: 767.98px) and (prefers-reduced-motion: no-preference) {
+  .ui-modal.is-closing {
+    transform: translateY(100%);
+  }
+
+  @starting-style {
+    .ui-modal[open] {
+      opacity: 1;
+      transform: translateY(100%);
+    }
+  }
+}

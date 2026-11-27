@@ -29,7 +29,10 @@
       { "path": "gdpr.css", "output": "gdpr.min.css" },
       { "path": "datalist.css", "output": "datalist.min.css" },
       { "path": "breadcrumb.css", "output": "breadcrumb.min.css" },
-      { "path": "eyebrow.css", "output": "eyebrow.min.css" }
+      { "path": "eyebrow.css", "output": "eyebrow.min.css" },
+      { "path": "modal.css", "output": "modal.min.css" },
+      { "path": "menu.css", "output": "menu.min.css" },
+      { "path": "chip.css", "output": "chip.min.css" }
     ]
   }
 }

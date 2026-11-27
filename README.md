@@ -11,7 +11,7 @@ It descends from the earlier `rimini.css` library and was renamed **Aptus** to b
 - Reset and normalization for consistent cross-browser rendering.
 - A simple row/column grid (`.g-row`, `.col1`–`.col12`).
 - Reusable utility classes for spacing, alignment, display, and visibility.
-- Common UI patterns: buttons, message bars, breadcrumbs, eyebrow labels, status badges, spinners, and fade effects.
+- Common UI patterns: buttons, message bars, breadcrumbs, eyebrow labels, modal dialogs and bottom sheets, action menus, filter chips and counters, data tables and responsive row lists, status badges, spinners, and fade effects.
 - Responsive image helpers and small visual treatments such as shadows, rounded images, captions, and hover effects.
 - No dependency on Bootstrap, Tailwind, or any other CSS framework.
 

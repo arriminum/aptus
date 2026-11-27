@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aptus Menu CSS</title>
+  <link rel="stylesheet" href="../../src/menu.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 36px 0 12px;
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    .demo-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #ffffff;
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      background: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .demo-row-text {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* A clipping container: the menu still shows whole because it is fixed-positioned */
+    .demo-clip {
+      overflow: hidden;
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+    }
+
+    .demo-corner {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+    }
+
+    .demo-static {
+      position: static;
+      max-width: 280px;
+    }
+
+    .demo-static.ui-menu-sheet {
+      position: static;
+      max-width: 375px;
+      border-radius: 16px;
+    }
+
+    .demo-static-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 24px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Menu CSS</h1>
+    <p>Action menu ("⋯") opened from <code>.ui-menu-trigger</code>. On desktop it is a fixed-position popover placed next to the trigger; below <code>768px</code> it opens as a bottom sheet (<code>.ui-menu-sheet</code>) over <code>.ui-menu-backdrop</code>. The positioning, keyboard and history logic belong to Palatium's <code>ActionMenu</code>; the small script on this page only demonstrates the CSS contract.</p>
+
+    <h2>Page actions (ghost trigger)</h2>
+    <div class="demo-bar">
+      <strong>Acme Corp</strong>
+      <button type="button" class="ui-menu-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-page" aria-label="More actions">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="3" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="13" cy="8" r="1.5" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <div class="ui-menu" id="menu-page" role="menu" hidden>
+      <div class="ui-menu-title">Acme Corp</div>
+      <div class="ui-menu-label">Create</div>
+      <a class="ui-menu-item" role="menuitem" href="#new-company">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>New company
+      </a>
+      <a class="ui-menu-item" role="menuitem" href="#new-contact">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 13.5c.8-2.4 2.7-3.5 5-3.5s4.2 1.1 5 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>New contact
+      </a>
+      <div class="ui-menu-sep" role="separator"></div>
+      <button class="ui-menu-item" role="menuitem" type="button">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Export
+      </button>
+      <button class="ui-menu-item" role="menuitem" type="button" aria-disabled="true">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4.5h11v8h-11zM2.5 4.5 4 2.5h8l1.5 2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Archive (disabled)
+      </button>
+      <div class="ui-menu-sep" role="separator"></div>
+      <button class="ui-menu-item ui-menu-item-danger" role="menuitem" type="button">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.7 9h5.6l.7-9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Delete
+      </button>
+      <button class="ui-menu-item ui-menu-cancel" type="button" data-menu-cancel>Cancel</button>
+    </div>
+
+    <h2>Row actions (plain trigger, inside an <code>overflow: hidden</code> container)</h2>
+    <div class="demo-clip">
+      <div class="demo-row">
+        <span class="demo-row-text">Nina Cat — nina@example.com</span>
+        <button type="button" class="ui-menu-trigger ui-menu-trigger-plain" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-row" aria-label="Actions for Nina Cat">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="3" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="13" cy="8" r="1.5" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <div class="demo-row">
+        <span class="demo-row-text">A contact with a very long name that does not fit on one line at narrow widths</span>
+        <button type="button" class="ui-menu-trigger ui-menu-trigger-plain" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-row" aria-label="Actions for this contact">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="3" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="13" cy="8" r="1.5" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ui-menu" id="menu-row" role="menu" hidden>
+      <div class="ui-menu-title">Nina Cat</div>
+      <button class="ui-menu-item" role="menuitem" type="button">Notes</button>
+      <a class="ui-menu-item" role="menuitem" href="#open" target="_blank">Open in a new tab</a>
+      <button class="ui-menu-item" role="menuitem" type="button">An item with a long label that wraps onto a second line inside the menu</button>
+      <div class="ui-menu-sep" role="separator"></div>
+      <button class="ui-menu-item ui-menu-item-danger" role="menuitem" type="button">Delete</button>
+      <button class="ui-menu-item ui-menu-cancel" type="button" data-menu-cancel>Cancel</button>
+    </div>
+
+    <h2>Static previews</h2>
+    <p>Rendered in place (not fixed) to compare both modes at any width. <code>.ui-menu-title</code> and <code>.ui-menu-cancel</code> only show in sheet mode.</p>
+    <div class="demo-static-wrap">
+      <div class="ui-menu demo-static" role="menu" aria-label="Desktop preview">
+        <div class="ui-menu-title">Hidden on desktop</div>
+        <button class="ui-menu-item" role="menuitem" type="button">Edit</button>
+        <button class="ui-menu-item" role="menuitem" type="button">Duplicate</button>
+        <div class="ui-menu-sep" role="separator"></div>
+        <button class="ui-menu-item ui-menu-item-danger" role="menuitem" type="button">Delete</button>
+        <button class="ui-menu-item ui-menu-cancel" type="button">Cancel</button>
+      </div>
+      <div class="ui-menu ui-menu-sheet demo-static" role="menu" aria-label="Sheet preview">
+        <div class="ui-menu-title">Nina Cat</div>
+        <button class="ui-menu-item" role="menuitem" type="button">Edit</button>
+        <button class="ui-menu-item" role="menuitem" type="button">Duplicate</button>
+        <div class="ui-menu-sep" role="separator"></div>
+        <button class="ui-menu-item ui-menu-item-danger" role="menuitem" type="button">Delete</button>
+        <button class="ui-menu-item ui-menu-cancel" type="button">Cancel</button>
+      </div>
+    </div>
+
+    <h2>Markup</h2>
+    <pre><code>&lt;button type="button" class="ui-menu-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="m1" aria-label="More actions"&gt;
+  &lt;i class="fa-solid fa-ellipsis" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/button&gt;
+&lt;div class="ui-menu" id="m1" role="menu" hidden&gt;
+  &lt;div class="ui-menu-title"&gt;Acme Corp&lt;/div&gt;            &lt;!-- optional, sheet only --&gt;
+  &lt;div class="ui-menu-label"&gt;Create&lt;/div&gt;              &lt;!-- optional group label --&gt;
+  &lt;a class="ui-menu-item" role="menuitem" href="…"&gt;&lt;i class="fa-solid fa-plus" aria-hidden="true"&gt;&lt;/i&gt;New company&lt;/a&gt;
+  &lt;button class="ui-menu-item" role="menuitem" type="button"&gt;Export&lt;/button&gt;
+  &lt;div class="ui-menu-sep" role="separator"&gt;&lt;/div&gt;
+  &lt;button class="ui-menu-item ui-menu-item-danger" role="menuitem" type="button"&gt;Delete&lt;/button&gt;
+  &lt;button class="ui-menu-item ui-menu-cancel" type="button"&gt;Cancel&lt;/button&gt;  &lt;!-- optional, sheet only --&gt;
+&lt;/div&gt;
+&lt;div class="ui-menu-backdrop" hidden&gt;&lt;/div&gt;                &lt;!-- sheet mode only --&gt;</code></pre>
+  </main>
+
+  <button type="button" class="ui-menu-trigger demo-corner" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-row" aria-label="Corner trigger (opens upwards)">
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="3" cy="8" r="1.5" fill="currentColor"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="13" cy="8" r="1.5" fill="currentColor"/></svg>
+  </button>
+
+  <script>
+    // Demo only: in production the menu is driven by Palatium's ActionMenu.
+    const mobile = window.matchMedia('(max-width: 767.98px)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let current = null;
+    let backdrop = null;
+
+    function place(menu, trigger) {
+      const gap = 4;
+      const margin = 8;
+      const r = trigger.getBoundingClientRect();
+      const w = menu.offsetWidth;
+      const h = menu.offsetHeight;
+      const vertical = (r.bottom + gap + h > window.innerHeight - margin && r.top - gap - h >= margin) ? 'top' : 'bottom';
+      const side = (r.right - w < margin) ? 'start' : 'end';
+      const top = vertical === 'bottom' ? r.bottom + gap : r.top - gap - h;
+      const left = side === 'end' ? r.right - w : Math.min(r.left, window.innerWidth - margin - w);
+      menu.style.top = Math.max(margin, top) + 'px';
+      menu.style.left = Math.max(margin, left) + 'px';
+      menu.dataset.placement = vertical + '-' + side;
+    }
+
+    function afterTransition(el, done) {
+      if (reduced.matches) { done(); return; }
+      let finished = false;
+      const finish = () => { if (!finished) { finished = true; done(); } };
+      el.addEventListener('transitionend', finish, { once: true });
+      setTimeout(finish, 300);
+    }
+
+    function open(trigger) {
+      const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+      close();
+      current = { menu, trigger };
+      trigger.setAttribute('aria-expanded', 'true');
+
+      if (mobile.matches) {
+        menu.classList.add('ui-menu-sheet');
+        menu.style.top = menu.style.left = '';
+        delete menu.dataset.placement;
+        backdrop = document.createElement('div');
+        backdrop.className = 'ui-menu-backdrop';
+        backdrop.addEventListener('click', close);
+        document.body.appendChild(backdrop);
+        menu.hidden = false;
+      } else {
+        menu.classList.remove('ui-menu-sheet');
+        menu.hidden = false;
+        place(menu, trigger);
+      }
+    }
+
+    function close() {
+      if (!current) return;
+      const { menu, trigger } = current;
+      const oldBackdrop = backdrop;
+      current = null;
+      backdrop = null;
+      trigger.setAttribute('aria-expanded', 'false');
+      menu.classList.add('is-closing');
+      afterTransition(menu, () => { menu.hidden = true; menu.classList.remove('is-closing'); });
+      if (oldBackdrop) {
+        oldBackdrop.classList.add('is-closing');
+        afterTransition(oldBackdrop, () => oldBackdrop.remove());
+      }
+    }
+
+    document.querySelectorAll('[aria-controls^="menu-"]').forEach((trigger) => trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (current && current.trigger === trigger) close(); else open(trigger);
+    }));
+
+    document.querySelectorAll('.ui-menu[id]').forEach((menu) => menu.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (e.target.closest('.ui-menu-item:not([aria-disabled="true"])')) {
+        e.preventDefault();
+        close();
+      }
+    }));
+
+    document.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && current) { const t = current.trigger; close(); t.focus(); } });
+    window.addEventListener('resize', close);
+    window.addEventListener('scroll', () => { if (current && !mobile.matches) close(); }, { passive: true });
+  </script>
+</body>
+</html>

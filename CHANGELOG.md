@@ -8,6 +8,21 @@ This changelog starts tracking changes from `2.1.3` onward. Changes prior to tha
 
 ## Unreleased
 
+## [3.1.0] - 2026-11-27
+
+### Added
+
+- New module `modal.css` with the `.ui-modal` frame for native `<dialog>` (sizes `narrow`/`default`/`wide`/`full`, fixed header and footer around a scrolling body with scroll shadows and a thin scrollbar, title at body-text size in bold, start-aligned text that does not inherit page-level centering, blurred backdrop, `is-loading`/`is-busy`/`is-closing` states, `@starting-style` entry animation, and a bottom-sheet layout with safe-area padding on mobile), plus `html.ui-modal-open` page scroll lock. Tunable through `--ui-modal-padding`, `--ui-modal-radius`, `--ui-modal-title-size` and `--ui-modal-title-weight`. (minor)
+- `docs/examples/modal.html` and usage documentation for the modal module. (minor)
+- `datalist.css`: new row list component (`.datalist`, `.datalist-head`, `.datalist-list`, `.datalist-item`, `.datalist-link`, `.datalist-cell` with slots `.datalist-title`/`-sub`/`-badge`/`-value`/`-meta`/`-desk` and `.is-empty`, quick actions `.datalist-actions`/`.datalist-action`, `.datalist-tag` with `-muted`/`-success`/`-warning`/`-danger`, `.datalist-more`/`.datalist-more-btn` with `aria-busy` state, reserved `.datalist-selectable`/`.datalist-select`), and side padding for a `.datalist-summary` placed directly inside `.datalist`, aligned with the rows. Aligned columns from `768px` driven by `--datalist-cols`; native-app list items at `max-width: 767.98px`. Additive: `.datalist-table` and existing classes are unchanged. (minor)
+- `docs/examples/datalist-list.html` and usage documentation for the row list. (minor)
+- New module `menu.css` with the action menu: `.ui-menu-trigger` (ghost, and `.ui-menu-trigger-plain` for rows), the fixed-position `.ui-menu` popover with `data-placement`-aware entry animation, `.ui-menu-item` (same look for `<a>`/`<button>`, fixed-width icon, outline on keyboard focus, `aria-disabled`), `.ui-menu-item-danger`, `.ui-menu-sep`, `.ui-menu-label`, the `.ui-menu-sheet` bottom-sheet mode with `.ui-menu-title`, `.ui-menu-cancel` and `.ui-menu-backdrop`, and `.is-closing` exit state. Themed through `--ui-menu-*` variables with fallbacks. (minor)
+- New module `chip.css` with `.ui-chip-list`, `.ui-chip`, `.ui-chip-text`, `.ui-chip-key`, `.ui-chip-remove` (32px touch target), `.ui-chip-clear` and the `.ui-count` badge (hidden while empty). Themed through `--ui-chip-*` / `--ui-count-*` variables with fallbacks. (minor)
+- `modal.css`: `.ui-modal-sheet` modifier, a bottom sheet below `768px` (drag handle, `85dvh` max height, footer actions sharing the width) and a narrow centered modal on desktop. Additive: `.ui-modal` without the modifier is unchanged. (minor)
+- `rpack.json`: added `menu.css` and `chip.css` to the generated module list. (minor)
+- `datalist.css`: row selection styles. `label.datalist-select` makes the whole checkbox column the touch target (row height, pointer cursor), checkboxes get a fixed size and accent color (`--datalist-check-size`, `--datalist-check-color`) with a focus outline, `label.datalist-link` is a row body that toggles the checkbox instead of navigating, and `.datalist-item.is-selected` tints selected rows (`--datalist-row-selected-bg`, `--datalist-row-selected-hover-bg`). New selection bar `.datalist-selectbar` with `.datalist-selectbar-all` (select-all checkbox aligned with the row checkboxes), `.datalist-selectbar-count` and `.datalist-selectbar-actions`. Additive: lists without `.datalist-selectable` are unchanged. (minor)
+- `docs/examples/menu.html`, `docs/examples/chip.html`, a sheet demo in `docs/examples/modal.html`, and usage documentation for the menu, chips and sheet modifier. (minor)
+
 ## [3.0.1] - 2026-07-22
 
 ### Fixed

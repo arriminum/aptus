@@ -41,6 +41,9 @@ src/gdpr.css
 src/datalist.css
 src/breadcrumb.css
 src/eyebrow.css
+src/modal.css
+src/menu.css
+src/chip.css
 src/VERSION
 src/APP_NAME
 ```
@@ -59,6 +62,9 @@ dist/gdpr.min.css
 dist/datalist.min.css
 dist/breadcrumb.min.css
 dist/eyebrow.min.css
+dist/modal.min.css
+dist/menu.min.css
+dist/chip.min.css
 dist/VERSION
 dist/APP_NAME
 ```

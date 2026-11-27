@@ -145,6 +145,84 @@ See [docs/examples/breadcrumb.html](examples/breadcrumb.html) for a runnable exa
 
 See [docs/examples/eyebrow.html](examples/eyebrow.html) for a runnable example.
 
+## Modal (`modal.css`)
+
+```html
+<dialog class="ui-modal ui-modal-default" aria-labelledby="ui-modal-title-1">
+  <header class="ui-modal-header">
+    <h2 class="ui-modal-title" id="ui-modal-title-1">Title</h2>
+    <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+  </header>
+  <div class="ui-modal-body">…</div>
+  <footer class="ui-modal-footer">…</footer>
+</dialog>
+```
+
+Structural frame for a native `<dialog>` opened with `showModal()`: size, centering, a scrolling body between fixed header and footer, a blurred backdrop matching `.msg-alert-overlay`, and a bottom-sheet layout below `768px`. Content inside the body is not styled, except that the margins of its first and last child are removed (the body padding is the spacing). The header and footer have no dividers: a soft shadow appears at the top or bottom of the body only while content is scrolled out of view there. Put the main actions in `.ui-modal-footer` so they stay visible when the body scrolls. The title has the same size as the body text, in bold, whatever heading element is used. The dialog resets `text-align` to `start`, so a page-level `text-align: center` does not leak into it. Sizes: `.ui-modal-narrow` (420px), `.ui-modal-default` (640px), `.ui-modal-wide` (960px), `.ui-modal-full`. States: `.ui-modal-body.is-loading` (spinner), `.ui-modal.is-busy` (progress cursor), `.ui-modal.is-closing` (exit animation; call `close()` after ~250ms). Add `html.ui-modal-open` while a modal is open to lock page scroll. Uses `--color-surface` and `--color-text` with fallbacks. Custom properties on `.ui-modal`: `--ui-modal-padding` (24px, 20px on mobile), `--ui-modal-radius` (16px), `--ui-modal-title-size` (1em), and `--ui-modal-title-weight` (700).
+
+See [docs/examples/modal.html](examples/modal.html) for a runnable example.
+
+### Sheet modifier
+
+```html
+<dialog class="ui-modal ui-modal-sheet" aria-labelledby="ui-modal-title-1">…</dialog>
+```
+
+`.ui-modal-sheet` is for side panels such as a filter panel. Below `768px` it is a bottom sheet with a decorative drag handle, at most `85dvh` tall (`85vh` fallback), with the body scrolling between the fixed header and footer, the footer clearing `env(safe-area-inset-bottom)`, and the footer actions (for example "Clear" and "Apply") sharing the width. It slides up from the bottom and respects `prefers-reduced-motion`. On desktop it behaves like `.ui-modal-narrow` (a centered 420px modal); a right-side drawer was considered and left out to keep the module simple. A `.ui-modal` without the modifier is unchanged.
+
+The sheet is demonstrated in [docs/examples/modal.html](examples/modal.html) as well.
+
+## Menu (`menu.css`)
+
+```html
+<button type="button" class="ui-menu-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="m1" aria-label="More actions">
+  <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+</button>
+<div class="ui-menu" id="m1" role="menu" hidden>
+  <div class="ui-menu-title">Acme Corp</div>
+  <div class="ui-menu-label">Create</div>
+  <a class="ui-menu-item" role="menuitem" href="…"><i class="fa-solid fa-plus" aria-hidden="true"></i>New company</a>
+  <button class="ui-menu-item" role="menuitem" type="button">Export</button>
+  <div class="ui-menu-sep" role="separator"></div>
+  <button class="ui-menu-item ui-menu-item-danger" role="menuitem" type="button">Delete</button>
+  <button class="ui-menu-item ui-menu-cancel" type="button">Cancel</button>
+</div>
+```
+
+Action menu ("⋯") styles; positioning, keyboard and history behavior belong to the JS (Palatium's `ActionMenu`).
+
+- `.ui-menu-trigger`: square icon button, 36px (40px below `768px`), with a light border; `.ui-menu-trigger-plain` drops the border for use inside rows. `[aria-expanded="true"]` marks it open.
+- `.ui-menu`: `position: fixed` popover (the JS sets `top`/`left`), 200px minimum width, at most `min(320px, 100vw - 16px)`, scrolling when taller than the viewport. The `hidden` attribute hides it. The JS sets `data-placement="bottom-end|bottom-start|top-end|top-start"` so the entry animation grows from the trigger's side (default `bottom-end`).
+- `.ui-menu-item`: `<a>` or `<button>` row with the same look, about 36px tall on desktop and 48px on mobile, with an optional fixed-width leading icon (`<i>`, `<svg>` or `.ui-menu-icon`). Keyboard focus shows an outline, not only a background. `[aria-disabled="true"]` (or `:disabled`) dims the item. `.ui-menu-item-danger` turns it red.
+- `.ui-menu-sep` (1px separator), `.ui-menu-label` (small uppercase group title).
+- `.ui-menu-title` and `.ui-menu-cancel` (use with `.ui-menu-item`) only show in sheet mode, so server-rendered menus can always include them.
+- `.ui-menu-sheet`: the same menu as a bottom sheet (full width, rounded top corners, drag handle, larger items, `env(safe-area-inset-bottom)` padding, slides up). The JS must not set `top`/`left` inline in this mode. Pair it with a `<div class="ui-menu-backdrop">` (translucent dark overlay, sheet mode only).
+- Animation: entry runs from `@starting-style` when `hidden` is removed; for the exit, add `.is-closing` to the menu (and backdrop), wait for `transitionend` with a timeout fallback, then set `hidden`. Durations are 140ms for the popover and 220ms for the sheet; `prefers-reduced-motion: reduce` removes them.
+
+Theme variables (all with fallbacks, set on `:root` or on the menu): `--ui-menu-bg`, `--ui-menu-text`, `--ui-menu-muted`, `--ui-menu-border`, `--ui-menu-hover`, `--ui-menu-focus`, `--ui-menu-shadow`, `--ui-menu-radius`, `--ui-menu-padding`, `--ui-menu-font-size`, `--ui-menu-danger` / `--ui-menu-danger-strong` / `--ui-menu-danger-hover`, `--ui-menu-cancel-bg` / `--ui-menu-cancel-hover`, `--ui-menu-handle`, `--ui-menu-backdrop`, `--ui-menu-z` (1000; the backdrop sits one below), and `--ui-menu-trigger-text` / `--ui-menu-trigger-border` / `--ui-menu-trigger-border-active`. Falls back to `--color-surface` and `--color-text` where set.
+
+See [docs/examples/menu.html](examples/menu.html) for a runnable example.
+
+## Chips (`chip.css`)
+
+```html
+<button type="button">Filters <span class="ui-count">2</span></button>
+
+<ul class="ui-chip-list" aria-label="Active filters">
+  <li class="ui-chip">
+    <span class="ui-chip-text"><span class="ui-chip-key">Stage:</span> Lead</span>
+    <button type="button" class="ui-chip-remove" aria-label="Remove filter Stage: Lead"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+  </li>
+  <li><button type="button" class="ui-chip-clear">Clear all</button></li>
+</ul>
+```
+
+`.ui-chip-list` is an unstyled wrapping flex list (6px gap). `.ui-chip` is a small pill (about 28px tall) whose `.ui-chip-text` is cut with an ellipsis when too long; `.ui-chip-key` is a dimmer label. `.ui-chip-remove` is a 20px round button with an invisible 32px touch target. `.ui-chip-clear` is a discreet link-style button. `.ui-count` is a small numeric badge for buttons, hidden while `:empty`, so the JS only writes or clears the number.
+
+Theme variables (all with fallbacks): `--ui-chip-gap`, `--ui-chip-font-size`, `--ui-chip-bg`, `--ui-chip-text`, `--ui-chip-border`, `--ui-chip-key`, `--ui-chip-remove`, `--ui-chip-remove-hover`, `--ui-chip-clear`, `--ui-chip-focus`, `--ui-count-bg`, `--ui-count-text`.
+
+See [docs/examples/chip.html](examples/chip.html) for a runnable example.
+
 ## UI (`ui.css`)
 
 ### Responsive images
@@ -335,3 +413,48 @@ All colors, plus font size/weight and header corner rounding, are customizable p
 - `--datalist-summary-color` — summary/footer text color.
 - `--datalist-pager-bg` / `--datalist-pager-color` / `--datalist-pager-border`, `--datalist-pager-hover-bg` / `--datalist-pager-hover-color` — pager link colors.
 - `--datalist-pager-current-bg` / `--datalist-pager-current-color` / `--datalist-pager-current-border` — current-page indicator colors.
+
+### Row list
+
+An alternative to `.datalist-table` built from `ul > li`, with one real link per row. From `768px` up the cells line up in columns under a header row; at `max-width: 767.98px` each row becomes a native-app list item (title and badge/value on line 1, muted subtitles on line 2, optional meta on line 3), edge to edge with thin separators.
+
+```html
+<div class="datalist" style="--datalist-cols: 3fr 2fr 3fr 1fr">
+  <div class="datalist-head" aria-hidden="true">
+    <span>Name</span><span>Role</span><span>Email</span><span>Status</span>
+  </div>
+  <ul class="datalist-list">
+    <li class="datalist-item">
+      <a class="datalist-link" href="/contact/?k=12">
+        <span class="datalist-cell datalist-title">Nina Cat</span>
+        <span class="datalist-cell datalist-sub">CEO</span>
+        <span class="datalist-cell datalist-sub is-empty"></span>
+        <span class="datalist-cell datalist-badge"><span class="datalist-tag">Inactive</span></span>
+      </a>
+      <div class="datalist-actions">
+        <a class="datalist-action" href="tel:19981132743" aria-label="Call Nina Cat"><i class="fa-solid fa-phone" aria-hidden="true"></i></a>
+      </div>
+    </li>
+  </ul>
+  <div class="datalist-summary"><span>Showing 20 of 134</span></div>
+  <div class="datalist-more"><button type="button" class="datalist-more-btn">Load more</button></div>
+</div>
+```
+
+- `.datalist` — container; `--datalist-cols` (a `grid-template-columns` value) sets the desktop columns shared by `.datalist-head` and every `.datalist-link`.
+- `.datalist-head` — visual header row (desktop only, mark it `aria-hidden="true"`); add `.datalist-value` to a header `span` to right-align its label.
+- `.datalist-list` / `.datalist-item` — the `ul` and each `li`; the `li` is a grid `[link] [actions]`.
+- `.datalist-link` — the row link, covering the whole row (hover on pointer devices, `:active` state, `:focus-visible` outline).
+- `.datalist-cell` plus one slot: `.datalist-title` (line 1 left, bold, ellipsis), `.datalist-value` (right-aligned column; line 1 right, before the badge), `.datalist-badge` (line 1 right), `.datalist-sub` (line 2, joined by "·"), `.datalist-meta` (line 3, smaller), `.datalist-desk` (desktop only).
+- `.is-empty` — on an empty cell: keeps its column on desktop, hidden on mobile without leaving a stray separator.
+- `.datalist-actions` / `.datalist-action` — quick actions outside the link; round 40px icon buttons that always need an `aria-label`. They are always visible (desktop and mobile). The column defaults to `48px` when the list contains `.datalist-actions` (`0` otherwise) and the header reserves the same width; override with `--datalist-actions-w`.
+- `.datalist-tag` — neutral pill, with `.datalist-tag-muted`, `.datalist-tag-success`, `.datalist-tag-warning`, `.datalist-tag-danger`.
+- `.datalist-summary` — reused as is; placed directly inside `.datalist`, it gets side padding that lines it up with the row content.
+- `.datalist-more` / `.datalist-more-btn` — centered "Load more" button; `aria-busy="true"` on the button shows a spinner and blocks clicks; `hidden` on `.datalist-more` hides it.
+- `.datalist-empty` — as an `li` inside `.datalist-list`, spans the whole row.
+- `.datalist-selectable` / `.datalist-select` — selectable rows: each `li` becomes `[select] [link] [actions]`, with a `label.datalist-select` around the row checkbox (the whole column, `--datalist-select-w`, `44px`, is the touch target); the header reserves the same width. The row body may be a `label.datalist-link` pointing at the checkbox (`for`), so a click anywhere on the row toggles it instead of navigating. `.is-selected` on the `li` tints the selected rows.
+- `.datalist-selectbar` — selection bar placed directly inside `.datalist`, before the rows: `label.datalist-selectbar-all` (a "select all shown" checkbox lined up with the row checkboxes; use its `indeterminate` state for a partial selection), `.datalist-selectbar-count` (the selected count) and `.datalist-selectbar-actions` (bulk actions, pushed to the end; wraps below on narrow screens).
+
+Theme variables (all with fallbacks): `--datalist-list-font-size` / `--datalist-list-font-size-mob`, `--datalist-text-color`, `--datalist-title-color`, `--datalist-title-weight`, `--datalist-sub-color`, `--datalist-meta-color`, `--datalist-head-color`, `--datalist-separator`, `--datalist-list-bg`, `--datalist-row-bg`, `--datalist-row-hover-bg`, `--datalist-row-active-bg`, `--datalist-focus-color`, `--datalist-row-pad-x` / `--datalist-row-pad-y` (and `-mob` variants), `--datalist-row-min-h` / `--datalist-row-min-h-mob`, `--datalist-row-radius`, `--datalist-col-gap`, `--datalist-action-size`, `--datalist-action-bg` / `--datalist-action-hover-bg`, `--datalist-tag-bg` / `--datalist-tag-color` (and `--datalist-tag-{muted,success,warning,danger}-{bg,color}`), `--datalist-more-bg` / `--datalist-more-color` / `--datalist-more-border` / `--datalist-more-hover-bg`, `--datalist-select-w`, `--datalist-check-size` / `--datalist-check-color`, `--datalist-row-selected-bg` / `--datalist-row-selected-hover-bg`.
+
+See [docs/examples/datalist-list.html](examples/datalist-list.html) for a runnable example.

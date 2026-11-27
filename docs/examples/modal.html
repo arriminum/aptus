@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aptus Modal CSS</title>
+  <link rel="stylesheet" href="../../src/modal.css">
+  <style>
+    body {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      color: #242424;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      background: #f0f0f0;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #f6f6f6;
+      border: 1px solid #dddddd;
+    }
+
+    .demo-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 24px;
+    }
+
+    label {
+      display: block;
+      margin: 0 0 12px;
+    }
+
+    .demo-section + .demo-section {
+      margin-top: 28px;
+    }
+
+    .demo-section h3 {
+      margin: 0 0 2px;
+      font-size: 1.125rem;
+    }
+
+    .demo-help {
+      color: #666666;
+      font-size: 0.875rem;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aptus Modal CSS</h1>
+    <p>Open each modal below. On desktop the modal is centered and only the body scrolls; below <code>768px</code> it becomes a bottom sheet (<code>ui-modal-full</code> takes the whole screen; <code>ui-modal-sheet</code> adds a drag handle and a shorter height).</p>
+
+    <div class="demo-buttons">
+      <button type="button" data-open="modal-narrow">Narrow</button>
+      <button type="button" data-open="modal-default">Default (long content)</button>
+      <button type="button" data-open="modal-wide">Wide (long form)</button>
+      <button type="button" data-open="modal-full">Full</button>
+      <button type="button" data-open="modal-loading">Loading (no footer)</button>
+      <button type="button" data-open="modal-sections">Sections (centered page)</button>
+      <button type="button" data-open="modal-sheet">Sheet (filters)</button>
+    </div>
+
+    <dialog class="ui-modal ui-modal-narrow" id="modal-narrow" aria-labelledby="ui-modal-title-1">
+      <header class="ui-modal-header">
+        <h2 class="ui-modal-title" id="ui-modal-title-1">Confirm</h2>
+        <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="ui-modal-body">
+        <p>Do you want to remove this item?</p>
+      </div>
+      <footer class="ui-modal-footer">
+        <button type="button" class="ui-modal-close-action">Cancel</button>
+        <button type="button">Remove</button>
+      </footer>
+    </dialog>
+
+    <dialog class="ui-modal ui-modal-default" id="modal-default" aria-labelledby="ui-modal-title-2">
+      <header class="ui-modal-header">
+        <h2 class="ui-modal-title" id="ui-modal-title-2">Long content</h2>
+        <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="ui-modal-body" id="long-body"></div>
+      <footer class="ui-modal-footer">
+        <button type="button">OK</button>
+      </footer>
+    </dialog>
+
+    <dialog class="ui-modal ui-modal-wide" id="modal-wide" aria-labelledby="ui-modal-title-3">
+      <header class="ui-modal-header">
+        <h2 class="ui-modal-title" id="ui-modal-title-3">Long form</h2>
+        <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="ui-modal-body">
+        <form id="long-form"></form>
+      </div>
+      <footer class="ui-modal-footer">
+        <button type="button">Cancel</button>
+        <button type="submit" form="long-form">Save</button>
+      </footer>
+    </dialog>
+
+    <dialog class="ui-modal ui-modal-full" id="modal-full" aria-labelledby="ui-modal-title-4">
+      <header class="ui-modal-header">
+        <h2 class="ui-modal-title" id="ui-modal-title-4">Full</h2>
+        <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="ui-modal-body">
+        <p>Full-size modal.</p>
+      </div>
+      <footer class="ui-modal-footer">
+        <button type="button">OK</button>
+      </footer>
+    </dialog>
+
+    <dialog class="ui-modal ui-modal-default" id="modal-loading" aria-labelledby="ui-modal-title-5">
+      <header class="ui-modal-header">
+        <h2 class="ui-modal-title" id="ui-modal-title-5">Loading</h2>
+        <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="ui-modal-body is-loading"></div>
+    </dialog>
+
+    <!-- The wrapper centers its text, as some pages do on <body>: the modal must stay start-aligned -->
+    <div style="text-align: center;">
+      <dialog class="ui-modal ui-modal-default" id="modal-sections" aria-labelledby="ui-modal-title-6">
+        <header class="ui-modal-header">
+          <h2 class="ui-modal-title" id="ui-modal-title-6">Pay outstanding balance</h2>
+          <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+        </header>
+        <div class="ui-modal-body" id="sections-body"></div>
+        <footer class="ui-modal-footer">
+          <button type="button" class="ui-modal-close-action">Cancel</button>
+          <button type="button">Pay now</button>
+        </footer>
+      </dialog>
+    </div>
+
+    <!--
+      .ui-modal-sheet: bottom sheet below 768px (drag handle, max 85dvh, footer buttons share the width).
+      Desktop choice: it behaves like .ui-modal-narrow (centered, 420px). A right-side drawer was considered
+      and left out to keep modal.css simple; it can be added later as a separate modifier.
+    -->
+    <dialog class="ui-modal ui-modal-sheet" id="modal-sheet" aria-labelledby="ui-modal-title-7">
+      <header class="ui-modal-header">
+        <h2 class="ui-modal-title" id="ui-modal-title-7">Filters</h2>
+        <button type="button" class="ui-modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="ui-modal-body">
+        <form id="sheet-form"></form>
+      </div>
+      <footer class="ui-modal-footer">
+        <button type="button" class="ui-modal-close-action">Clear</button>
+        <button type="button" class="ui-modal-close-action">Apply</button>
+      </footer>
+    </dialog>
+
+    <h2>Sheet modifier</h2>
+    <p><code>.ui-modal-sheet</code> is meant for side panels such as filters. Below <code>768px</code> it is a bottom sheet with a drag handle, at most <code>85dvh</code> tall, with the body scrolling between the fixed header and footer and the footer buttons sharing the width. <strong>On desktop it behaves like <code>.ui-modal-narrow</code></strong> (a centered 420px modal); a right-side drawer was considered and left out to keep <code>modal.css</code> simple. Without the modifier, <code>.ui-modal</code> is unchanged.</p>
+
+    <pre><code>&lt;dialog class="ui-modal ui-modal-default" aria-labelledby="ui-modal-title-1"&gt;
+  &lt;header class="ui-modal-header"&gt;
+    &lt;h2 class="ui-modal-title" id="ui-modal-title-1"&gt;Title&lt;/h2&gt;
+    &lt;button type="button" class="ui-modal-close" aria-label="Close"&gt;×&lt;/button&gt;
+  &lt;/header&gt;
+  &lt;div class="ui-modal-body"&gt;…&lt;/div&gt;
+  &lt;footer class="ui-modal-footer"&gt;…&lt;/footer&gt;
+&lt;/dialog&gt;</code></pre>
+  </main>
+
+  <script>
+    // Demo only: in production the dialog is driven by Palatium's Modal.
+    document.getElementById('long-body').innerHTML = Array.from({ length: 30 }, (_, i) => '<p>Paragraph ' + (i + 1) + ' of long content.</p>').join('');
+    document.getElementById('sections-body').innerHTML = ['Amount to pay', 'Payment method', 'Billing details'].map((title) => '<section class="demo-section"><h3>' + title + '</h3><p class="demo-help">Short help text for this section.</p><p>Section content. Resize the window to a short height to see the body scroll between the fixed header and footer.</p></section>').join('');
+    document.getElementById('sheet-form').innerHTML = ['Stage', 'Owner', 'City', 'Source', 'Created after', 'Created before', 'Tag'].map((name) => '<label>' + name + '<input type="text" name="' + name.toLowerCase().replace(/ /g, '-') + '"></label>').join('');
+    document.getElementById('long-form').innerHTML =Array.from({ length: 15 }, (_, i) => '<label>Field ' + (i + 1) + '<input type="text" name="f' + i + '"></label>').join('');
+
+    document.querySelectorAll('[data-open]').forEach((btn) => btn.addEventListener('click', () => {
+      document.getElementById(btn.dataset.open).showModal();
+      document.documentElement.classList.add('ui-modal-open');
+    }));
+
+    document.querySelectorAll('.ui-modal').forEach((dialog) => {
+      dialog.addEventListener('close', () => {
+        dialog.classList.remove('is-closing');
+        document.documentElement.classList.remove('ui-modal-open');
+      });
+      dialog.querySelectorAll('.ui-modal-close, .ui-modal-close-action').forEach((btn) => btn.addEventListener('click', () => {
+        dialog.classList.add('is-closing');
+        setTimeout(() => dialog.close(), 250);
+      }));
+    });
+  </script>
+</body>
+</html>

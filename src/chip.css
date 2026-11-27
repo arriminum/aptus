@@ -1,0 +1,199 @@
+/*
+ * Aptus chips — removable pills for active filters (.ui-chip-list > .ui-chip), a "clear all" link-button,
+ * and .ui-count, a small numeric badge for buttons ("Filters 2").
+ * Theme through --ui-chip-* and --ui-count-* custom properties; every one has a fallback.
+ */
+
+
+
+/* LIST ----- */
+
+.ui-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-chip-gap, 6px);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* :where() keeps this reset at class specificity, so .ui-chip padding still applies */
+.ui-chip-list > :where(li) {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* CHIP ----- */
+
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 28px;
+  padding: 0 4px 0 10px;
+  font-size: var(--ui-chip-font-size, 0.8125rem);
+  line-height: 1.2;
+  color: var(--ui-chip-text, var(--color-text, #1f2933));
+  background: var(--ui-chip-bg, #eef1f4);
+  border: 1px solid var(--ui-chip-border, transparent);
+  border-radius: 999px;
+}
+
+/* Long values are cut with an ellipsis instead of overflowing the line */
+.ui-chip-text {
+  min-width: 0;
+  padding: 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Chip without a remove button: balance the side padding */
+.ui-chip-text:last-child {
+  padding-right: 6px;
+}
+
+.ui-chip-key {
+  color: var(--ui-chip-key, #52606d);
+}
+
+
+
+/* REMOVE ----- */
+
+.ui-chip-remove {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ui-chip-remove, #52606d);
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Invisible 32px touch target around the 20px button */
+.ui-chip-remove::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ui-chip-remove:hover {
+  color: var(--ui-chip-text, var(--color-text, #1f2933));
+  background-color: var(--ui-chip-remove-hover, rgba(15, 23, 42, 0.1));
+}
+
+.ui-chip-remove:focus-visible {
+  outline: 2px solid var(--ui-chip-focus, #2563eb);
+  outline-offset: 1px;
+}
+
+
+
+/* CLEAR ALL ----- */
+
+.ui-chip-clear {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 6px;
+  font: inherit;
+  font-size: var(--ui-chip-font-size, 0.8125rem);
+  line-height: 1.2;
+  color: var(--ui-chip-clear, #475569);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ui-chip-clear:hover {
+  color: var(--ui-chip-text, var(--color-text, #1f2933));
+  text-decoration-color: currentColor;
+}
+
+.ui-chip-clear:focus-visible {
+  outline: 2px solid var(--ui-chip-focus, #2563eb);
+  outline-offset: 1px;
+}
+
+
+
+/* COUNT ----- */
+
+/* Hidden while empty, so the JS only has to write or clear the number */
+.ui-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 18px;
+  height: 18px;
+  margin-inline-start: 0.375em;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  vertical-align: middle;
+  color: var(--ui-count-text, #fff);
+  background: var(--ui-count-bg, #1f2933);
+  border-radius: 999px;
+}
+
+.ui-count:empty {
+  display: none;
+}
+
+
+
+/* ANIMATION ----- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .ui-chip-remove,
+  .ui-chip-clear {
+    transition: background-color 0.12s ease, color 0.12s ease, text-decoration-color 0.12s ease;
+  }
+}
+
+
+
+/* MOBILE ----- */
+
+@media (max-width: 767.98px) {
+  .ui-chip-clear {
+    min-height: 32px;
+  }
+}
