@@ -6,7 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 This changelog starts tracking changes from `2.1.3` onward. Changes prior to that version were not recorded here.
 
-## Unreleased
+## [4.0.0] - 2026-11-28
+
+### Changed
+
+- Mobile touch targets of at least 44px below `768px`; desktop is unchanged. `menu.css`: `.ui-menu-trigger` goes from 40px to 44px. `chip.css`: `.ui-chip` grows to 36px, `.ui-chip-remove` to 24px with a 44px invisible target (was 32px), `.ui-chip-clear` gets `min-height: 44px` (was 32px), and `.ui-chip-list` keeps at least 8px between wrapped lines so the targets of neighbouring chips do not overlap. `datalist.css`: `.datalist-pager a` and `.datalist-pager-current` become 44px targets with a 14px font (was 11px with `padding: 5px 10px`), and `.datalist-pager` wraps instead of overflowing. Projects that override these sizes on mobile keep their overrides. (minor)
+
+### Removed
+
+- `datalist.css`: `.datalist-empty` no longer has a background or text color of its own (was `#cdeb8b` on `#36393d`); it inherits the surrounding text color. The `--datalist-empty-bg` and `--datalist-empty-color` variables were removed, so projects that define them no longer see any effect and should style `.datalist-empty` directly if they want a colored panel. In the row list, `.datalist-list > .datalist-empty` now has `18px` top padding, no bottom padding and no bottom separator (was `16px` top and bottom with a `--datalist-separator` border). (major)
+
+### Fixed
+
+- `commons.css`: the `.res-pad-*` and `.res-margin-*` utilities now switch at `min-width: 768px` instead of `min-width: 800px`, matching the grid and the two breakpoints in `docs/conventions.md`. Between 768px and 799px, `.res-pad-left*`/`-right*` and `.res-margin-left*`/`-right*` now apply their value, and `.res-margin-top-*` is now zero (previously the opposite in that range). (patch)
+- `docs/usage.md`: `res-*` utilities documented with the `768px` breakpoint, the real class name `.res-margin-top-*` (was `.res-top-margin-*`) and the full value lists declared in the CSS; the datalist font variable is `--font-size-datalist` (was `--datalist-font-size`), which has no default in Aptus; updated `.ui-menu-trigger`, chip and pager sizes. `AGENTS.md`: the grid breakpoint is `min-width: 768px`. `docs/examples/chip.html`: mobile touch target described. (patch)
+- `docs/examples/datalist.html`: the example tables sit in a page-local `overflow-x: auto` container, so the page no longer scrolls sideways at 360px. `docs/usage.md` and the example explain that `.datalist-table` does not reflow on small screens and point to a scroll container or the row list. No library CSS changed. (patch)
+- `docs/usage.md`: the default of `--ui-modal-padding` is documented as `30px` (was `24px`), matching `modal.css`. No library CSS changed. (patch)
 
 ## [3.1.0] - 2026-11-27
 

@@ -35,7 +35,7 @@ Run the build after any change under `src/`. Full details, including which tool 
 There is no automated test suite or linter in this repository. Validate manually:
 
 - Open the relevant page in `docs/examples/` (or add a section to it) and check the change in a browser.
-- Check both desktop and mobile widths, and the intermediate range between the grid breakpoint (`min-width: 800px`) and the mobile-utility breakpoint (`max-width: 767.98px`).
+- Check both desktop and mobile widths, and both sides of the breakpoint pair: the mobile-utility breakpoint (`max-width: 767.98px`) and the grid/desktop breakpoint (`min-width: 768px`), for example at 767px and 768px.
 - Check the change inside and outside `.g-row`/`.col*`, and against long text and small/large images where relevant.
 - Watch for: horizontal overflow, broken grid rows, unexpectedly high specificity, rules that leak beyond their intended scope, and conflicts between modules.
 

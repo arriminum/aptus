@@ -52,8 +52,6 @@
   background-color: var(--datalist-row-alt-bg, #f4fafa);
 }
 .datalist-empty {
-  background-color: var(--datalist-empty-bg, #cdeb8b);
-  color: var(--datalist-empty-color, #36393d);
   font-size: var(--font-size-datalist);
   text-align: center;
   padding: 4px 0;
@@ -127,6 +125,24 @@
   color: var(--datalist-pager-current-color, #959595);
   font-weight: 600;
   font-size: 11px;
+}
+/* Mobile: 44px touch targets with a readable font; long pagers wrap instead of overflowing. */
+@media (max-width: 767.98px) {
+  .datalist-pager {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .datalist-pager a,
+  .datalist-pager-current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
 }
 
 
@@ -246,8 +262,8 @@
   padding: 0 var(--datalist-row-pad-x, 12px);
 }
 .datalist-list > .datalist-empty {
-  padding: 16px var(--datalist-row-pad-x, 12px);
-  border-bottom: 1px solid var(--datalist-separator, #e3e5e8);
+  padding: 18px var(--datalist-row-pad-x, 12px) 0 var(--datalist-row-pad-x, 12px);
+  /*border-bottom: 1px solid var(--datalist-separator, #e3e5e8);*/
 }
 @media (hover: hover) {
   .datalist-item:hover {

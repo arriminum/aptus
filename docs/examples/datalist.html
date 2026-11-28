@@ -67,6 +67,11 @@
       background: #ffffff;
     }
 
+    /* Lets a wide table scroll inside the example box instead of widening the page on small screens */
+    .doc-scroll {
+      overflow-x: auto;
+    }
+
     .doc-example .datalist-table {
       --datalist-table-border: 1px solid #dddddd;
     }
@@ -79,38 +84,40 @@
 
     <section aria-labelledby="basic">
       <h2 id="basic">Basic table</h2>
-      <p><code>.datalist-table</code> on a <code>&lt;table&gt;</code>. Rows highlight on hover by default. This example sets <code>--datalist-table-border: 1px solid #dddddd</code> for the outer border and body-row separators.</p>
+      <p><code>.datalist-table</code> on a <code>&lt;table&gt;</code>. Rows highlight on hover by default. This example sets <code>--datalist-table-border: 1px solid #dddddd</code> for the outer border and body-row separators. On small screens, wrap the table in a container with <code>overflow-x: auto</code> (here a page-local <code>.doc-scroll</code>) so it scrolls inside the box instead of widening the page, or use the <a href="datalist-list.html">row list</a>, which is built for mobile.</p>
       <div class="doc-example">
-        <table class="datalist-table">
-          <thead>
-            <tr>
-              <th width="44%">Nome</th>
-              <th width="24%">Tipo</th>
-              <th width="16%">Criação</th>
-              <th width="16%">Último acesso</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-id="16">
-              <td>John Smith</td>
-              <td>Manager</td>
-              <td>10/07/2026</td>
-              <td></td>
-            </tr>
-            <tr data-id="17" class="datalist-row-alt">
-              <td>Alice Doe</td>
-              <td>Analyst</td>
-              <td>02/03/2026</td>
-              <td>14/07/2026</td>
-            </tr>
-            <tr data-id="18">
-              <td>Bruno Alves</td>
-              <td>Analyst</td>
-              <td>21/01/2026</td>
-              <td>15/07/2026</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="doc-scroll">
+          <table class="datalist-table">
+            <thead>
+              <tr>
+                <th width="44%">Nome</th>
+                <th width="24%">Tipo</th>
+                <th width="16%">Criação</th>
+                <th width="16%">Último acesso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-id="16">
+                <td>John Smith</td>
+                <td>Manager</td>
+                <td>10/07/2026</td>
+                <td></td>
+              </tr>
+              <tr data-id="17" class="datalist-row-alt">
+                <td>Alice Doe</td>
+                <td>Analyst</td>
+                <td>02/03/2026</td>
+                <td>14/07/2026</td>
+              </tr>
+              <tr data-id="18">
+                <td>Bruno Alves</td>
+                <td>Analyst</td>
+                <td>21/01/2026</td>
+                <td>15/07/2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <pre><code>&lt;table class="datalist-table"&gt;
   &lt;thead&gt;
@@ -141,20 +148,22 @@
       <h2 id="no-hover">Disabling row hover</h2>
       <p>Add <code>.datalist-no-hover</code> to <code>.datalist-table</code> when rows are not clickable.</p>
       <div class="doc-example">
-        <table class="datalist-table datalist-no-hover">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Tipo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>John Smith</td>
-              <td>Manager</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="doc-scroll">
+          <table class="datalist-table datalist-no-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Smith</td>
+                <td>Manager</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <pre><code>&lt;table class="datalist-table datalist-no-hover"&gt;...&lt;/table&gt;</code></pre>
     </section>
@@ -165,20 +174,22 @@
       <h2 id="actions">Row actions</h2>
       <p><code>.datalist-action-link</code> for inline links/commands inside a cell, such as edit or delete.</p>
       <div class="doc-example">
-        <table class="datalist-table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>John Smith</td>
-              <td><a href="#" class="datalist-action-link"><i>✎</i>Editar</a></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="doc-scroll">
+          <table class="datalist-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Smith</td>
+                <td><a href="#" class="datalist-action-link"><i>✎</i>Editar</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <pre><code>&lt;a href="#" class="datalist-action-link"&gt;&lt;i&gt;✎&lt;/i&gt;Editar&lt;/a&gt;</code></pre>
     </section>
@@ -187,16 +198,18 @@
 
     <section aria-labelledby="empty">
       <h2 id="empty">Empty state</h2>
-      <p><code>.datalist-empty</code> for a "no results" row or panel below the table.</p>
+      <p><code>.datalist-empty</code> for a centered "no results" message below the table. It has no background or color of its own and inherits the surrounding text color.</p>
       <div class="doc-example">
-        <table class="datalist-table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Tipo</th>
-            </tr>
-          </thead>
-        </table>
+        <div class="doc-scroll">
+          <table class="datalist-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
         <div class="datalist-empty">Nenhum registro encontrado.</div>
       </div>
       <pre><code>&lt;div class="datalist-empty"&gt;Nenhum registro encontrado.&lt;/div&gt;</code></pre>

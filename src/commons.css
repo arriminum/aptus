@@ -469,7 +469,7 @@ b, .bold {
 }
 
 
-@media (min-width: 800px) {
+@media (min-width: 768px) {
   .res-pad-left10 {
     padding-left: 10px;
   }

@@ -92,7 +92,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Invisible 32px touch target around the 20px button */
+/* Invisible 32px touch target around the 20px button (44px around 24px on mobile) */
 .ui-chip-remove::after {
   content: "";
   position: absolute;
@@ -192,8 +192,32 @@
 
 /* MOBILE ----- */
 
+/*
+ * 44px touch targets. The chip grows to 36px and the remove button to 24px, so the 44px
+ * target overflows the chip by 4px above and below; a row gap of at least 8px keeps the
+ * targets of chips on wrapped lines apart. Sideways the target overflows the chip edge by
+ * 6px (22px - 12px - 4px padding), which the 6px default gap absorbs.
+ */
 @media (max-width: 767.98px) {
+  .ui-chip-list {
+    row-gap: max(var(--ui-chip-gap, 6px), 8px);
+  }
+
+  .ui-chip {
+    min-height: 36px;
+  }
+
+  .ui-chip-remove {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ui-chip-remove::after {
+    width: 44px;
+    height: 44px;
+  }
+
   .ui-chip-clear {
-    min-height: 32px;
+    min-height: 44px;
   }
 }

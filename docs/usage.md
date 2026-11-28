@@ -88,9 +88,9 @@ Compact inline badges; both currently render with the same green background vari
 - `.pad-left10` / `.pad-left20`, `.pad-right10` / `.pad-right20` — one-sided padding.
 - `.hor-pad10` / `.hor-pad20` — left and right padding together.
 - `.ver-pad10` / `.ver-pad20` — top and bottom padding together.
-- `.res-pad-left{10,20,40,60,80}`, `.res-pad-right{10,20,40,60,80}` — zero below `min-width: 800px`, the named value at and above it.
-- `.res-margin-left{10,20,30,40,50}`, `.res-margin-right{10,20,30,40,50}` — zero below `min-width: 800px`, the named value at and above it.
-- `.res-top-margin-{10,20,30,40,50,80}` — the named `margin-top` value below `min-width: 800px`, zero at and above it.
+- `.res-pad-left{10,20,30,40,50,60,70,80,90,100}`, `.res-pad-right{10,20,30,40,50,60,70,80,90,100}` — zero below `768px`, the named value at `min-width: 768px` and above.
+- `.res-margin-left{10,20,30,40,50,60}`, `.res-margin-right{10,20,30,40,50,60}` — zero below `768px`, the named value at `min-width: 768px` and above.
+- `.res-margin-top-{10,20,30,40,50,60}` — the named `margin-top` value below `768px`, zero at `min-width: 768px` and above.
 
 ### Go to top
 
@@ -158,7 +158,7 @@ See [docs/examples/eyebrow.html](examples/eyebrow.html) for a runnable example.
 </dialog>
 ```
 
-Structural frame for a native `<dialog>` opened with `showModal()`: size, centering, a scrolling body between fixed header and footer, a blurred backdrop matching `.msg-alert-overlay`, and a bottom-sheet layout below `768px`. Content inside the body is not styled, except that the margins of its first and last child are removed (the body padding is the spacing). The header and footer have no dividers: a soft shadow appears at the top or bottom of the body only while content is scrolled out of view there. Put the main actions in `.ui-modal-footer` so they stay visible when the body scrolls. The title has the same size as the body text, in bold, whatever heading element is used. The dialog resets `text-align` to `start`, so a page-level `text-align: center` does not leak into it. Sizes: `.ui-modal-narrow` (420px), `.ui-modal-default` (640px), `.ui-modal-wide` (960px), `.ui-modal-full`. States: `.ui-modal-body.is-loading` (spinner), `.ui-modal.is-busy` (progress cursor), `.ui-modal.is-closing` (exit animation; call `close()` after ~250ms). Add `html.ui-modal-open` while a modal is open to lock page scroll. Uses `--color-surface` and `--color-text` with fallbacks. Custom properties on `.ui-modal`: `--ui-modal-padding` (24px, 20px on mobile), `--ui-modal-radius` (16px), `--ui-modal-title-size` (1em), and `--ui-modal-title-weight` (700).
+Structural frame for a native `<dialog>` opened with `showModal()`: size, centering, a scrolling body between fixed header and footer, a blurred backdrop matching `.msg-alert-overlay`, and a bottom-sheet layout below `768px`. Content inside the body is not styled, except that the margins of its first and last child are removed (the body padding is the spacing). The header and footer have no dividers: a soft shadow appears at the top or bottom of the body only while content is scrolled out of view there. Put the main actions in `.ui-modal-footer` so they stay visible when the body scrolls. The title has the same size as the body text, in bold, whatever heading element is used. The dialog resets `text-align` to `start`, so a page-level `text-align: center` does not leak into it. Sizes: `.ui-modal-narrow` (420px), `.ui-modal-default` (640px), `.ui-modal-wide` (960px), `.ui-modal-full`. States: `.ui-modal-body.is-loading` (spinner), `.ui-modal.is-busy` (progress cursor), `.ui-modal.is-closing` (exit animation; call `close()` after ~250ms). Add `html.ui-modal-open` while a modal is open to lock page scroll. Uses `--color-surface` and `--color-text` with fallbacks. Custom properties on `.ui-modal`: `--ui-modal-padding` (30px, 20px on mobile), `--ui-modal-radius` (16px), `--ui-modal-title-size` (1em), and `--ui-modal-title-weight` (700).
 
 See [docs/examples/modal.html](examples/modal.html) for a runnable example.
 
@@ -191,7 +191,7 @@ The sheet is demonstrated in [docs/examples/modal.html](examples/modal.html) as 
 
 Action menu ("⋯") styles; positioning, keyboard and history behavior belong to the JS (Palatium's `ActionMenu`).
 
-- `.ui-menu-trigger`: square icon button, 36px (40px below `768px`), with a light border; `.ui-menu-trigger-plain` drops the border for use inside rows. `[aria-expanded="true"]` marks it open.
+- `.ui-menu-trigger`: square icon button, 36px (44px below `768px`), with a light border; `.ui-menu-trigger-plain` drops the border for use inside rows. `[aria-expanded="true"]` marks it open.
 - `.ui-menu`: `position: fixed` popover (the JS sets `top`/`left`), 200px minimum width, at most `min(320px, 100vw - 16px)`, scrolling when taller than the viewport. The `hidden` attribute hides it. The JS sets `data-placement="bottom-end|bottom-start|top-end|top-start"` so the entry animation grows from the trigger's side (default `bottom-end`).
 - `.ui-menu-item`: `<a>` or `<button>` row with the same look, about 36px tall on desktop and 48px on mobile, with an optional fixed-width leading icon (`<i>`, `<svg>` or `.ui-menu-icon`). Keyboard focus shows an outline, not only a background. `[aria-disabled="true"]` (or `:disabled`) dims the item. `.ui-menu-item-danger` turns it red.
 - `.ui-menu-sep` (1px separator), `.ui-menu-label` (small uppercase group title).
@@ -217,7 +217,7 @@ See [docs/examples/menu.html](examples/menu.html) for a runnable example.
 </ul>
 ```
 
-`.ui-chip-list` is an unstyled wrapping flex list (6px gap). `.ui-chip` is a small pill (about 28px tall) whose `.ui-chip-text` is cut with an ellipsis when too long; `.ui-chip-key` is a dimmer label. `.ui-chip-remove` is a 20px round button with an invisible 32px touch target. `.ui-chip-clear` is a discreet link-style button. `.ui-count` is a small numeric badge for buttons, hidden while `:empty`, so the JS only writes or clears the number.
+`.ui-chip-list` is an unstyled wrapping flex list (6px gap; at least 8px between wrapped lines below `768px`). `.ui-chip` is a small pill (about 28px tall, 36px below `768px`) whose `.ui-chip-text` is cut with an ellipsis when too long; `.ui-chip-key` is a dimmer label. `.ui-chip-remove` is a 20px round button with an invisible 32px touch target (24px with a 44px target below `768px`; the row gap keeps the targets of chips on wrapped lines from overlapping). `.ui-chip-clear` is a discreet link-style button (at least 44px tall below `768px`). `.ui-count` is a small numeric badge for buttons, hidden while `:empty`, so the JS only writes or clears the number.
 
 Theme variables (all with fallbacks): `--ui-chip-gap`, `--ui-chip-font-size`, `--ui-chip-bg`, `--ui-chip-text`, `--ui-chip-border`, `--ui-chip-key`, `--ui-chip-remove`, `--ui-chip-remove-hover`, `--ui-chip-clear`, `--ui-chip-focus`, `--ui-count-bg`, `--ui-count-text`.
 
@@ -361,6 +361,8 @@ Styling for a text-input autocomplete suggestion list (no JavaScript included):
 
 Styling for a table of data fetched from a service: header, hoverable rows, row actions, empty state, and a summary/pager footer.
 
+The table does not reflow on small screens: wrap it in a container with `overflow-x: auto` so it scrolls inside that container instead of widening the page, or use the row list (`.datalist`, below), which is built for mobile.
+
 ```html
 <table class="datalist-table">
   <thead>
@@ -395,20 +397,19 @@ Styling for a table of data fetched from a service: header, hoverable rows, row 
 - `.datalist-no-hover` — add to `.datalist-table` to disable the row hover highlight, for non-clickable rows.
 - `.datalist-row-alt` — zebra-striping modifier for a `<tr>`.
 - `.datalist-action-link` — inline command/link inside a cell (edit, delete, etc.).
-- `.datalist-empty` — "no results" panel shown when the table has no rows.
+- `.datalist-empty` — centered "no results" message shown when the table has no rows; it has no background or text color of its own and inherits the surrounding text color.
 - `.datalist-summary` — footer row pairing a record count with `.datalist-pager`.
-- `.datalist-pager` / `.datalist-pager-current` — pagination list and its current-page indicator.
+- `.datalist-pager` / `.datalist-pager-current` — pagination list and its current-page indicator. Below `768px` each page link and the current page become 44px touch targets with a 14px font, and the list wraps.
 
 All colors, plus font size/weight and header corner rounding, are customizable per project via `--datalist-*` CSS variables; each has a fallback so the module works unstyled out of the box:
 
-- `--datalist-font-size` (`13px`) — base font size for the table and `.datalist-empty`, so the empty-state message never renders larger than the table content.
+- `--font-size-datalist` (no default: when unset, the table, `.datalist-summary` and `.datalist-empty` inherit the surrounding font size; the row list falls back to `14px`) — base font size for the table, the summary and `.datalist-empty`, so the empty-state message never renders larger than the table content. Define it in the consuming project (for example `13px`).
 - `--datalist-font-weight` (`600`) — header (`th`) font weight.
 - `--datalist-action-font-weight` (`400`) — `.datalist-action-link` font weight; raise it per project for a heavier-looking action link.
 - `--datalist-head-radius` (`6px`) — rounds the top-left/top-right corners of the header row; set to `0` to disable.
 - `--datalist-head-bg` / `--datalist-head-color` — header background/text color.
 - `--datalist-row-hover-bg`, `--datalist-row-alt-bg` — row hover and zebra-stripe background.
 - `--datalist-text-color` — body cell text color.
-- `--datalist-empty-bg` / `--datalist-empty-color` — empty-state panel colors.
 - `--datalist-action-color` / `--datalist-action-hover-color` — row action link colors.
 - `--datalist-summary-color` — summary/footer text color.
 - `--datalist-pager-bg` / `--datalist-pager-color` / `--datalist-pager-border`, `--datalist-pager-hover-bg` / `--datalist-pager-hover-color` — pager link colors.
